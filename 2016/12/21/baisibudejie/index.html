@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>python3 爬取 ”百思不得姐“ 所有视频和图片 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="Python爬虫">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的….">
+<meta name="keywords" content="Python爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python3 爬取 ”百思不得姐“ 所有视频和图片">
+<meta property="og:url" content="https://liuyangxiong.cn/2016/12/21/baisibudejie/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的….">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/baisibudeqijie.png">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python3 爬取 ”百思不得姐“ 所有视频和图片">
+<meta name="twitter:description" content="这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的….">
+<meta name="twitter:image" content="http://obf6hf3q0.bkt.clouddn.com/baisibudeqijie.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">python3 爬取 ”百思不得姐“ 所有视频和图片</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-baisibudejie"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python3 爬取 ”百思不得姐“ 所有视频和图片</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2016-12-21 17:06:38" datetime="2016-12-21T09:06:38.000Z"  itemprop="datePublished">2016-12-21</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程/">编程</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">11</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的….</p>
+<a id="more"></a>
+<p>爬取的目标是：<a href="http://www.budejie.com/" target="_blank" rel="noopener">http://www.budejie.com/</a><br>工具：</p>
+<blockquote>
+<p>Linux<br>python 3<br>Sublime Text 3<br>终端</p>
+</blockquote>
+<p>需要用到的模块：</p>
+<blockquote>
+<p>urllib<br>BeautifulSoup<br>lxml</p>
+</blockquote>
+<p><code>urllib</code>python3里面已经自带了,所以需要下载的只有<code>BeautifulSoup</code>和<code>lxml</code><br>安装方法：</p>
+<blockquote>
+<p>pip3 bs4<br>pip3 lxml</p>
+</blockquote>
+<p>注：<code>BeautifulSoup</code>在<code>bs4</code>下面,所以直接安装<code>bs4</code><br>再注：<code>lxml</code>模块在windows下安装是会报错的,Google一下解决方法吧<br>好了，把东西都全部齐全之后，开始吧！<br>下面是爬视频的代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"># 引入模块</span><br><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import os</span><br><span class="line">import urllib.error</span><br><span class="line">def Replace(url):</span><br><span class="line">    url = url.replace(&quot;mvideo&quot;,&quot;svideo&quot;)</span><br><span class="line">    url = url.replace(&quot;cn&quot;,&quot;com&quot;)</span><br><span class="line">    url = url.replace(&quot;wpcco&quot;,&quot;wpd&quot;)</span><br><span class="line">    return url</span><br><span class="line">time = 1</span><br><span class="line">while True:</span><br><span class="line">    url = &quot;http://www.budejie.com/video/&quot;+str(time)</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36&quot;&#125;</span><br><span class="line">    url_Request = urllib.request.Request(url,headers=headers)</span><br><span class="line">    try:</span><br><span class="line">        url_open = urllib.request.urlopen(url_Request)</span><br><span class="line">    except urllib.error.HTTPError as e:</span><br><span class="line">        print(&quot;页面没有找到&quot;,e.code)</span><br><span class="line">    url_soup = BeautifulSoup(url_open.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">    try:</span><br><span class="line">        url_div = url_soup.find(&quot;div&quot;,class_=&quot;j-r-c&quot;).find_all(&quot;div&quot;,class_=&quot; j-video&quot;)</span><br><span class="line">        url_name = url_soup.find_all(&quot;li&quot;,class_=&quot;j-r-list-tool-l-down f-tar j-down-video j-down-hide ipad-hide&quot;)</span><br><span class="line">    except AttributeError as f:</span><br><span class="line">        print(&quot;已经爬完了...这个网站页面不多~不信自己翻一翻&quot;)</span><br><span class="line">        break</span><br><span class="line">    name = []  #用来储存视频的名字</span><br><span class="line">    div = []   # 用来储存视频的地址</span><br><span class="line">    replace_name = []   # 将视频名字中的一些特殊字符换掉</span><br><span class="line">    for i in url_name:</span><br><span class="line">        name.append(i[&quot;data-text&quot;])</span><br><span class="line">    for z in name:</span><br><span class="line">        z = z.replace(&quot;\&quot;&quot;,&quot;&apos;&quot;)</span><br><span class="line">        replace_name.append(z)</span><br><span class="line">    for x in url_div:</span><br><span class="line">        video_url =  Replace(x[&quot;data-mp4&quot;])</span><br><span class="line">        div.append(video_url)</span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line">    print(&quot;正在下载第 %s 页&quot; % time)</span><br><span class="line">    for z in zip(replace_name,div):</span><br><span class="line">        try:</span><br><span class="line">            print(&quot;Downloading... %s&quot; % z[0])</span><br><span class="line">            try:</span><br><span class="line">                urllib.request.urlretrieve(z[1],&quot;baisibudeqijie_video//%s.mp4&quot; % z[0])</span><br><span class="line">                print(&quot;%s Download complite!&quot; % z[0])</span><br><span class="line">            except OSError as o:</span><br><span class="line">                print(&quot;文件出错啦~可能是有特殊符号~也有可能是链接消失啦~这张就下载不了啦~&quot;,o)</span><br><span class="line">        except UnicodeEncodeError as u:</span><br><span class="line">            print(&quot;你用的可能是windows系统吧~这里报错“GBK”了~用Linux系统吧~&quot;)</span><br><span class="line">            print(&quot;或者在cmd窗口下输入: chcp 65001 就可以改成&apos;utf-8&apos;了&quot;)</span><br><span class="line">        except urllib.error.HTTPError as f:</span><br><span class="line">            print(&quot;图片链接没有找到,可能是被删除了吧～&quot;,f.code)</span><br><span class="line">        except FileNotFoundError as e:</span><br><span class="line">            print(&quot;视频链接没有找到,可能被删除了吧～&quot;,e)</span><br><span class="line">            pass</span><br><span class="line">    print(&quot;第 %s 页已下载完成&quot; % time)</span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line">    time+=1</span><br></pre></td></tr></table></figure>
+<p>下面是爬取图片的，其实和视频差不多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*- </span><br><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import os</span><br><span class="line">import urllib.error</span><br><span class="line">time = 1</span><br><span class="line">while True:</span><br><span class="line">    url = &quot;http://www.budejie.com/pic/&quot;+str(time)</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36&quot;&#125;</span><br><span class="line">    url_Request = urllib.request.Request(url,headers=headers)</span><br><span class="line">    try:</span><br><span class="line">        url_open = urllib.request.urlopen(url_Request)</span><br><span class="line">    except urllib.error.HTTPError as f:</span><br><span class="line">        print(&quot;页面没有找到&quot;,f.code)</span><br><span class="line">    url_soup = BeautifulSoup(url_open.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">    try:</span><br><span class="line">        url_div = url_soup.find(&quot;div&quot;,class_=&quot;j-r-list&quot;).find_all(&quot;img&quot;)</span><br><span class="line">    except AttributeError as e:</span><br><span class="line">        print(&quot;已经爬完了，这个网页的页面不多～不信自己翻一翻&quot;)</span><br><span class="line">        break</span><br><span class="line">    url_img = []   # 图片的地址</span><br><span class="line">    url_name = []   # 图片的名字</span><br><span class="line">    for i in url_div:</span><br><span class="line">        url_img.append(i[&quot;data-original&quot;])</span><br><span class="line">        url_name.append(i[&quot;alt&quot;])</span><br><span class="line">    url_reght = []   # 这个网站的图片会有一些不是图片的链接出现，没有后缀的~下载下来也没用，把它去掉</span><br><span class="line">    a = [&quot;.gif&quot;,&quot;.png&quot;,&quot;.jpg&quot;]</span><br><span class="line">    for i in url_img:</span><br><span class="line">        if i[-4:] in a:</span><br><span class="line">            url_reght.append(i)</span><br><span class="line">    url_name_split = []    # 因为字符串太长，储存的时候会报错，就截取&apos;，&apos;前面第一个</span><br><span class="line">    for name_split in url_name:</span><br><span class="line">        url_name_split.append(name_split.split(&quot;，&quot;))</span><br><span class="line">    print(&quot;--------------------------------&quot;)</span><br><span class="line">    print(&quot;正在下载第 %s 页&quot; % time)</span><br><span class="line">    for download in zip(url_name_split,url_reght):</span><br><span class="line">        try:</span><br><span class="line">            print(&quot;Download... %s&quot; % download[0][0])</span><br><span class="line">            try:</span><br><span class="line">                urllib.request.urlretrieve(download[1],&quot;baisibudeqijie_img//%s&quot; % (download[0][0]+download[1][-5:]))</span><br><span class="line">            except OSError as o:</span><br><span class="line">                print(&quot;文件出错啦~可能是有特殊符号~也有可能是链接消失啦~这张就下载不了啦~&quot;,o)</span><br><span class="line">            print(&quot;%s download complite!&quot; % download[0][0])</span><br><span class="line">        except UnicodeEncodeError as u:</span><br><span class="line">            print(&quot;你用的可能是windows系统吧~这里报错“GBK”了~用Linux系统吧~&quot;)</span><br><span class="line">            print(&quot;或者在cmd窗口下输入: chcp 65001 就可以改成&apos;utf-8&apos;了&quot;)</span><br><span class="line">        except urllib.error.HTTPError as f:</span><br><span class="line">            print(&quot;图片链接没有找到,可能是被删除了吧～&quot;,f.code)</span><br><span class="line">        except FileNotFoundError as e:</span><br><span class="line">            print(&quot;图片链接没有找到,可能是被删除了吧～&quot;,e)</span><br><span class="line">            pass</span><br><span class="line">    print(&quot;第 %s 页已经下载完成&quot; % time)</span><br><span class="line">    print(&quot;--------------------------------&quot;)</span><br><span class="line">    time+=1</span><br></pre></td></tr></table></figure>
+<p>好了,爬取 ”百思不得姐“ 的视频和图片就这么多代码，是不是相当简单，如果用<code>requests</code>就更简单了<br>我们把这两个合起来:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"># -*- condig: utf-8 -*-</span><br><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import os</span><br><span class="line">import urllib.error</span><br><span class="line">def Replace(url):</span><br><span class="line">    url = url.replace(&quot;mvideo&quot;,&quot;svideo&quot;)</span><br><span class="line">    url = url.replace(&quot;cn&quot;,&quot;com&quot;)</span><br><span class="line">    url = url.replace(&quot;wpcco&quot;,&quot;wpd&quot;)</span><br><span class="line">    return url</span><br><span class="line">def video():</span><br><span class="line">    time = 1</span><br><span class="line">    while True:</span><br><span class="line">        url = &quot;http://www.budejie.com/video/&quot;+str(time)</span><br><span class="line">        headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36&quot;&#125;</span><br><span class="line">        url_Request = urllib.request.Request(url,headers=headers)</span><br><span class="line">        try:</span><br><span class="line">            url_open = urllib.request.urlopen(url_Request)</span><br><span class="line">        except urllib.error.HTTPError as e:</span><br><span class="line">            print(&quot;页面没有找到&quot;,e.code)</span><br><span class="line">        url_soup = BeautifulSoup(url_open.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">        try:</span><br><span class="line">            url_div = url_soup.find(&quot;div&quot;,class_=&quot;j-r-c&quot;).find_all(&quot;div&quot;,class_=&quot; j-video&quot;)</span><br><span class="line">            url_name = url_soup.find_all(&quot;li&quot;,class_=&quot;j-r-list-tool-l-down f-tar j-down-video j-down-hide ipad-hide&quot;)</span><br><span class="line">        except AttributeError as f:</span><br><span class="line">            print(&quot;已经爬完了...这个网站页面不多~不信自己翻一翻&quot;)</span><br><span class="line">            break</span><br><span class="line">        name = []  #用来储存视频的名字</span><br><span class="line">        div = []   # 用来储存视频的地址</span><br><span class="line">        replace_name = []   # 将视频名字中的一些特殊字符换掉</span><br><span class="line">        for i in url_name:</span><br><span class="line">            name.append(i[&quot;data-text&quot;])</span><br><span class="line">        for z in name:</span><br><span class="line">            z = z.replace(&quot;\&quot;&quot;,&quot;&apos;&quot;)</span><br><span class="line">            replace_name.append(z)</span><br><span class="line">        for x in url_div:</span><br><span class="line">            video_url =  Replace(x[&quot;data-mp4&quot;])</span><br><span class="line">            div.append(video_url)</span><br><span class="line">        print(&quot;------------------------------------&quot;)</span><br><span class="line">        print(&quot;正在下载第 %s 页&quot; % time)</span><br><span class="line">        for z in zip(replace_name,div):</span><br><span class="line">            try:</span><br><span class="line">                print(&quot;Downloading... %s&quot; % z[0])</span><br><span class="line">                try:</span><br><span class="line">                    urllib.request.urlretrieve(z[1],&quot;baisibudeqijie_video//%s.mp4&quot; % z[0])</span><br><span class="line">                    print(&quot;%s Download complite!&quot; % z[0])</span><br><span class="line">                except OSError as o:</span><br><span class="line">                    print(&quot;文件出错啦~可能是有特殊符号~也有可能是链接消失啦~这张就下载不了啦~&quot;,o)</span><br><span class="line">            except UnicodeEncodeError as u:</span><br><span class="line">                print(&quot;你用的可能是windows系统吧~这里报错“GBK”了~用Linux系统吧~&quot;)</span><br><span class="line">                print(&quot;或者在cmd窗口下输入: chcp 65001 就可以改成&apos;utf-8&apos;了&quot;)</span><br><span class="line">            except urllib.error.HTTPError as f:</span><br><span class="line">                print(&quot;图片链接没有找到,可能是被删除了吧～&quot;,f.code)</span><br><span class="line">            except FileNotFoundError as e:</span><br><span class="line">                print(&quot;视频链接没有找到,可能被删除了吧～&quot;,e)</span><br><span class="line">                pass</span><br><span class="line">        print(&quot;第 %s 页已下载完成&quot; % time)</span><br><span class="line">        print(&quot;------------------------------------&quot;)</span><br><span class="line">        time+=1</span><br><span class="line">def img():</span><br><span class="line">    time = 1</span><br><span class="line">    while True:</span><br><span class="line">        url = &quot;http://www.budejie.com/pic/&quot;+str(time)</span><br><span class="line">        headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36&quot;&#125;</span><br><span class="line">        url_Request = urllib.request.Request(url,headers=headers)</span><br><span class="line">        try:</span><br><span class="line">            url_open = urllib.request.urlopen(url_Request)</span><br><span class="line">        except urllib.error.HTTPError as f:</span><br><span class="line">            print(&quot;页面没有找到&quot;,f.code)</span><br><span class="line">        url_soup = BeautifulSoup(url_open.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">        try:</span><br><span class="line">            url_div = url_soup.find(&quot;div&quot;,class_=&quot;j-r-list&quot;).find_all(&quot;img&quot;)</span><br><span class="line">        except AttributeError as e:</span><br><span class="line">            print(&quot;已经爬完了，这个网页的页面不多～不信自己翻一翻&quot;)</span><br><span class="line">            break</span><br><span class="line">        url_img = []   # 图片的地址</span><br><span class="line">        url_name = []   # 图片的名字</span><br><span class="line">        for i in url_div:</span><br><span class="line">            url_img.append(i[&quot;data-original&quot;])</span><br><span class="line">            url_name.append(i[&quot;alt&quot;])</span><br><span class="line">        url_reght = []   # 这个网站的图片会有一些不是图片的链接出现，没有后缀的~下载下来也没用，把它去掉</span><br><span class="line">        a = [&quot;.gif&quot;,&quot;.png&quot;,&quot;.jpg&quot;]</span><br><span class="line">        for i in url_img:</span><br><span class="line">            if i[-4:] in a:</span><br><span class="line">                url_reght.append(i)</span><br><span class="line">        url_name_split = []    # 因为字符串太长，储存的时候会报错，就截取&apos;，&apos;前面第一个</span><br><span class="line">        for name_split in url_name:</span><br><span class="line">            url_name_split.append(name_split.split(&quot;，&quot;))</span><br><span class="line">        print(&quot;--------------------------------&quot;)</span><br><span class="line">        print(&quot;正在下载第 %s 页&quot; % time)</span><br><span class="line">        for download in zip(url_name_split,url_reght):</span><br><span class="line">            try:</span><br><span class="line">                print(&quot;Download... %s&quot; % download[0][0])</span><br><span class="line">                try:</span><br><span class="line">                    urllib.request.urlretrieve(download[1],&quot;baisibudeqijie_img//%s&quot; % (download[0][0]+download[1][-5:]))</span><br><span class="line">                except OSError as o:</span><br><span class="line">                    print(&quot;文件出错啦~可能是有特殊符号~也有可能是链接消失啦~这张就下载不了啦~&quot;,o)</span><br><span class="line">                print(&quot;%s download complite!&quot; % download[0][0])</span><br><span class="line">            except UnicodeEncodeError as u:</span><br><span class="line">                print(&quot;你用的可能是windows系统吧~这里报错“GBK”了~用Linux系统吧~&quot;)</span><br><span class="line">                print(&quot;或者在cmd窗口下输入: chcp 65001 就可以改成&apos;utf-8&apos;了&quot;)</span><br><span class="line">            except urllib.error.HTTPError as f:</span><br><span class="line">                print(&quot;图片链接没有找到,可能是被删除了吧～&quot;,f.code)</span><br><span class="line">            except FileNotFoundError as e:</span><br><span class="line">                print(&quot;图片链接没有找到,可能是被删除了吧～&quot;,e)</span><br><span class="line">                pass</span><br><span class="line">        print(&quot;第 %s 页已经下载完成&quot; % time)</span><br><span class="line">        print(&quot;--------------------------------&quot;)</span><br><span class="line">        time+=1</span><br><span class="line">print(&quot;--------------------------------&quot;)</span><br><span class="line">print(&quot;| 1.video                      |&quot;)</span><br><span class="line">print(&quot;| 2.img                        |&quot;)</span><br><span class="line">print(&quot;--------------------------------&quot;)</span><br><span class="line">user = input(&quot;请选择1 or 2: &quot;)</span><br><span class="line">if user == &quot;1&quot;:</span><br><span class="line">    print(&quot;正在获取页面...&quot;)</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(&quot;baisibudeqijie_video&quot;)</span><br><span class="line">        if os.path.exists(&quot;baisibudeqijie_video&quot;):</span><br><span class="line">            os.rmdir(&quot;baisibudeqijie_video&quot;)</span><br><span class="line">            os.mkdir(&quot;baisibudeqijie_video&quot;)</span><br><span class="line">    except FileExistsError:</span><br><span class="line">        pass</span><br><span class="line">    video()</span><br><span class="line">elif user == &quot;2&quot;:</span><br><span class="line">    print(&quot;正在获取页面...&quot;)</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(&quot;baisibudeqijie_img&quot;)</span><br><span class="line">        if os.path.exists(&quot;baisibudeqijie_img&quot;):</span><br><span class="line">            os.rmdir(&quot;baisibudeqijie_img&quot;)</span><br><span class="line">            os.mkdir(&quot;baisibudeqijie_img&quot;)</span><br><span class="line">    except FileExistsError:</span><br><span class="line">        pass</span><br><span class="line">    img()</span><br><span class="line">else:</span><br><span class="line">    print(&quot;抱歉,选项里没有 &apos;%s&apos;&quot; % user)</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/baisibudeqijie.png" alt="2" title="">
+                </div>
+                <div class="image-caption">2</div>
+            </figure></center>
+
+<p>视频的运行结果是一样的～<br>后来我索性把这个网站的所以东西都爬了～包括音乐～段子～美女，这个是 <a href="https://github.com/rookiesmile/python/blob/master/Python/reptile/baisibudejie.py" target="_blank" rel="noopener">源代码</a>，参考参考吧～</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.960Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2016/12/21/baisibudejie/" target="_blank" rel="external">https://liuyangxiong.cn/2016/12/21/baisibudejie/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2016/12/21/baisibudejie/&title=《python3 爬取 ”百思不得姐“ 所有视频和图片》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2016/12/21/baisibudejie/&title=《python3 爬取 ”百思不得姐“ 所有视频和图片》 — Ape Code&source=这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的…." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2016/12/21/baisibudejie/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python3 爬取 ”百思不得姐“ 所有视频和图片》 — Ape Code&url=https://liuyangxiong.cn/2016/12/21/baisibudejie/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2016/12/21/baisibudejie/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/04/Guess-number2-0/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：猜数字游戏2.0 升级版(数据保存)
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/12/15/Guess-number/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：Python3 猜数字游戏">下一篇：Python3 猜数字游戏</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2016/12/21/baisibudejie/&title=《python3 爬取 ”百思不得姐“ 所有视频和图片》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2016/12/21/baisibudejie/&title=《python3 爬取 ”百思不得姐“ 所有视频和图片》 — Ape Code&source=这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的…." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2016/12/21/baisibudejie/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python3 爬取 ”百思不得姐“ 所有视频和图片》 — Ape Code&url=https://liuyangxiong.cn/2016/12/21/baisibudejie/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2016/12/21/baisibudejie/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aQW7DMAwFUd//0uk2QCF7PiUHEDVeGakb8bkAS4m8Lnx9vq7/n3x/Pno+/c7rjUuGDBnbMj6316r39AkvHpsMGTLOYYwWJs/MgEffwGOTIUOGDHJPQhmVj/xehgwZMmoJl2BIqUeSrwwZMmSQBdIyMU3iP9qLy5AhY0MG32r+/v6V/oYMGTK2YtQO63mqnT/6R1HJkCGjNYMnuNr2Mt2+zsQjQ4aMroyZ7SI56OeJmLcQUN0qQ4aMdoz7ZWpFHk/T6YjYMOHKkCGjKSPdRqbNy1rDoPi5DBkymjJ4M7J26EYS9/wRngwZMnoz3g6Fh7V2LRkyZHRipOXaTNDp5pYk+of/GzJkyGjEmBmV4E2CWjpGqVmGDBmtGbz8WpuaV7UQruDHMmTI2JWRDkzUEvSFrwUzIzJkyGjN4K1KEgpvdtaS/rC/IUOGjKaMmWGLGik9ngt+WYYMGe0YvLJaNR6RpuDg1ciQIeMYxv2xPh+Y4EdmfNji4YXKkCHjMEYtoJmjNJ6sh1HJkCHjYEaafPkmOX3m4aXIkCHjAAY/YotbjCC9pilbhgwZ5zDeaAzUhjNSavB3kCFDxuaMtD9YO4ZLQyHPFxurMmTI2JaRbiNrw1vz5eNDMSpDhowDGGni46mTtDwXIGXIkCEDkGqb0lpb4kI5WIYMGecy0qO6tHxM15IhQ8Y5DD4SkYYy31RARacMGTJaM/gCvBK7X6A2zDHzgmTIkLEt4w+PEbJQjRWNLwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

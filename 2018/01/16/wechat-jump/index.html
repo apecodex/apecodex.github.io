@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Python微信跳一跳半自动辅助 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="Python">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="我们在青春里得到爱，又在成长中失去爱。 but，I always love you as before.     ----《你曾经爱我》 又是许久未更新，前几天博客域名被我玩坏了，现在重新买了个新域名，但是当我换上之后，发现访问流量全部清空了….也是难受，老博客好不容易被收录，现在又得重新开始，想到这个我顺便把主题也换了~先在这个新博客发首篇博文试试~">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python微信跳一跳半自动辅助">
+<meta property="og:url" content="https://liuyangxiong.cn/2018/01/16/wechat-jump/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="我们在青春里得到爱，又在成长中失去爱。 but，I always love you as before.     ----《你曾经爱我》 又是许久未更新，前几天博客域名被我玩坏了，现在重新买了个新域名，但是当我换上之后，发现访问流量全部清空了….也是难受，老博客好不容易被收录，现在又得重新开始，想到这个我顺便把主题也换了~先在这个新博客发首篇博文试试~">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/wechat_jump0.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/wechat_jump1.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/wechat_jump2.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/wechat_jump3.gif">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python微信跳一跳半自动辅助">
+<meta name="twitter:description" content="我们在青春里得到爱，又在成长中失去爱。 but，I always love you as before.     ----《你曾经爱我》 又是许久未更新，前几天博客域名被我玩坏了，现在重新买了个新域名，但是当我换上之后，发现访问流量全部清空了….也是难受，老博客好不容易被收录，现在又得重新开始，想到这个我顺便把主题也换了~先在这个新博客发首篇博文试试~">
+<meta name="twitter:image" content="http://obf6hf3q0.bkt.clouddn.com/wechat_jump0.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Python微信跳一跳半自动辅助</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#流程"><span class="post-toc-number">2.</span> <span class="post-toc-text">流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取手机截图"><span class="post-toc-number">3.</span> <span class="post-toc-text">获取手机截图</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-wechat-jump"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Python微信跳一跳半自动辅助</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-01-16 21:36:20" datetime="2018-01-16T13:36:20.000Z"  itemprop="datePublished">2018-01-16</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程/">编程</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">7</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><code>我们在青春里得到爱，又在成长中失去爱。
+but，I always love you as before.     ----《你曾经爱我》</code></p>
+<p>又是许久未更新，前几天博客域名被我玩坏了，现在重新买了个新域名，但是当我换上之后，发现访问流量全部清空了….也是难受，老博客好不容易被收录，现在又得重新开始，想到这个我顺便把主题也换了~先在这个新博客发首篇博文试试~</p>
+<a id="more"></a>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>需要准备的工具:</p>
+<blockquote>
+<p>手机一部<br>USB数据线<br>adb工具</p>
+</blockquote>
+<p>需要用到的Python库：</p>
+<blockquote>
+<p>PIL<br>matplotlib<br>time<br>os<br>number</p>
+</blockquote>
+<p>安装方法我就不说了~自行解决</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ul>
+<li>1.获取手机截图</li>
+<li>2.获取起点坐标轴和终点坐标轴</li>
+<li>3.计算起点到终点的长度</li>
+<li>4.模拟手指按压的时间</li>
+</ul>
+<h2 id="获取手机截图"><a href="#获取手机截图" class="headerlink" title="获取手机截图"></a>获取手机截图</h2><p>获取截图要用到 <code>adb</code> 工具</p>
+<p>如何获取？</p>
+<p>获取之前先把手机连接到电脑，并且在开发者模式里面打开USB调试~<br>这样我们才有权限用<code>adb</code>执行命令~<br>连接上之后，先在命令行下用<code>adb</code>试试~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;adb shell screencap -p /sdcard/screen.png</span><br></pre></td></tr></table></figure>
+<p>执行这条命令之后打开手机内部存储空间会找到一个名为<code>screen.png</code>的截图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/wechat_jump0.png" alt="0" title="">
+                </div>
+                <div class="image-caption">0</div>
+            </figure>
+<p>截图是知道怎么弄了，但是我们得把他拿下来，不然没法定位坐标轴~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;adb pull /sdcard/screen.png</span><br></pre></td></tr></table></figure>
+<p>这条命令可以把手机内部存储空间里面刚才获取到的截图保存到当前目录下~</p>
+<p>Python代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line">os.system(&quot;adb shell screencap -p /sdcard/screen.png&quot;)    # 获取当前手机截图</span><br><span class="line">os.system(&quot;adb pull /sdcard/screen.png&quot;)</span><br></pre></td></tr></table></figure>
+<p>这样就实现了流程一的<code>获取手机截图</code></p>
+<p>拿到截图之后，接下来要拿到起点坐标轴和终点坐标轴~</p>
+<p>可以用<code>numpy.array</code>方法把图片返回成二维数组,用<code>matplotlib.pyplot</code>方法放在坐标轴上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def get_screen_image(self):</span><br><span class="line">	os.system(&quot;adb shell screencap -p /sdcard/screen.png&quot;)</span><br><span class="line">	os.system(&quot;adb pull /sdcard/screen.png&quot;)</span><br><span class="line">	return numpy.array(PIL.Image.open(&quot;screen.png&quot;))</span><br><span class="line"></span><br><span class="line">axes_image = plt.imshow(get_screen_image(),animated=True)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/wechat_jump1.png" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure>
+<p>现在就可以获取坐标轴了，但是不会凭空获取，我们要用鼠标单击获取，绑定鼠标单击事件，绑定之后还要有鼠标单击之后的回调~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def get_screen_image(self):</span><br><span class="line">	os.system(&quot;adb shell screencap -p /sdcard/screen.png&quot;)</span><br><span class="line">	os.system(&quot;adb pull /sdcard/screen.png&quot;)</span><br><span class="line">	return numpy.array(PIL.Image.open(&quot;screen.png&quot;))</span><br><span class="line"></span><br><span class="line">def on_calck(self,event, coor=[]):</span><br><span class="line">	coor.append((event.xdata,event.ydata))</span><br><span class="line"></span><br><span class="line">figure = plt.figure()</span><br><span class="line">axes_image = plt.imshow(get_screen_image(),animated=True)</span><br><span class="line">figure.canvas.mpl_connect(&quot;button_press_event&quot;,on_calck)    # 绑定鼠标单击事件</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>然后再运行一次，点击起点坐标和终点坐标</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/wechat_jump2.png" alt="2" title="">
+                </div>
+                <div class="image-caption">2</div>
+            </figure>
+<p>点了之后，返回结果如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">E:\Programmer\Python\wechat_jump&gt;python wechat_jump.py</span><br><span class="line">1578 KB/s (58416 bytes in 0.036s)</span><br><span class="line">[(368.07142857142844, 1102.8766233766232)]</span><br><span class="line">[(368.07142857142844, 1102.8766233766232), (809.62987012986991, 858.72077922077892)]</span><br></pre></td></tr></table></figure>
+<p>坐标轴就这样拿到手了，流程二搞定，然后就开始跳了~</p>
+<p>要怎么跳呢？在刚才那个回调函数中就可以直接把获取到的坐标轴传到跳的方法中来计算起点坐标轴到终点坐标轴的长度~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def get_screen_image(self):</span><br><span class="line">	os.system(&quot;adb shell screencap -p /sdcard/screen.png&quot;)</span><br><span class="line">	os.system(&quot;adb pull /sdcard/screen.png&quot;)</span><br><span class="line">	return numpy.array(PIL.Image.open(&quot;screen.png&quot;))</span><br><span class="line"></span><br><span class="line">def jump_to_next(self,point1,point2):</span><br><span class="line">	x1, y1 = point1    # 起点位置的X轴和Y轴</span><br><span class="line">	x2, y2 = point2    # 终点位置的X轴和Y轴</span><br><span class="line">        # 通过勾股定理计算起点坐标到终点坐标的长度</span><br><span class="line">	tan = ((x2 - x1)**2 + (y2 - y1)**2)**0.5</span><br><span class="line">         # 按压的时间</span><br><span class="line">	os.system(&quot;adb shell input swipe 320 410 320 410 &#123;&#125;&quot;.format(int(tan*1.35)))</span><br><span class="line"></span><br><span class="line">def on_calck(self,event, coor=[]):</span><br><span class="line">        # 获取鼠标单击的X轴和Y轴</span><br><span class="line">	coor.append((event.xdata,event.ydata))</span><br><span class="line">        # 判断列表里的元素有没有两个，一个是起点位置的X轴和Y轴，另一个是终点位置的X轴和Y轴</span><br><span class="line">        # 将起点位置和终点位置的坐标轴计算长度</span><br><span class="line">	if len(coor) == 2:</span><br><span class="line">		print(&quot;起点位置: &#123;&#125; 结束位置: &#123;&#125;&quot;.format(event.xdata,event.ydata))</span><br><span class="line">		jump_to_next(coor.pop(),coor.pop())</span><br><span class="line"></span><br><span class="line">figure = plt.figure()</span><br><span class="line">axes_image = plt.imshow(get_screen_image(),animated=True)</span><br><span class="line">figure.canvas.mpl_connect(&quot;button_press_event&quot;,on_calck)    # 绑定鼠标单击事件</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>到现在为止，已经可以执行跳的操作了，但是不可能跳完一次就结束吧，我们还得让他刷新截图接着跳~<br>可以直接用matplotlib.animation.FuncAnimation来实现刷新</p>
+<p>完整代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import PIL</span><br><span class="line">import time</span><br><span class="line">import numpy</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from matplotlib.animation import FuncAnimation</span><br><span class="line"></span><br><span class="line">class Wechat_jump():</span><br><span class="line"></span><br><span class="line">	def __init__(self):</span><br><span class="line">		self.need_update = True</span><br><span class="line"></span><br><span class="line">	# 获取图片/界面</span><br><span class="line">	def get_screen_image(self):</span><br><span class="line">                # 获取当前手机截图</span><br><span class="line">		os.system(&quot;adb shell screencap -p /sdcard/screen.png&quot;)</span><br><span class="line">                 # 从手机里获取图片并保存到电脑当前本地文件夹</span><br><span class="line">		os.system(&quot;adb pull /sdcard/screen.png&quot;)</span><br><span class="line">		return numpy.array(PIL.Image.open(&quot;screen.png&quot;))    # 返回一个二维数组</span><br><span class="line"></span><br><span class="line">	# 计算玄</span><br><span class="line">	def jump_to_next(self,point1,point2):</span><br><span class="line">		x1, y1 = point1    # 起点位置的X轴和Y轴</span><br><span class="line">		x2, y2 = point2    # 终点位置的X轴和Y轴</span><br><span class="line">                # 通过勾股定理计算起点坐标到终点坐标的长度</span><br><span class="line">		tan = ((x2 - x1)**2 + (y2 - y1)**2)**0.5</span><br><span class="line">                # 按压的时间，320 410的意思就是手指点在手机屏幕上的位置</span><br><span class="line">		os.system(&quot;adb shell input swipe 320 410 320 410 &#123;&#125;&quot;.format(int(tan*1.35)))</span><br><span class="line"></span><br><span class="line">	# 鼠标单击回调</span><br><span class="line">	def on_calck(self,event, coor=[]):</span><br><span class="line">                # 获取鼠标单击的X轴和Y轴</span><br><span class="line">		coor.append((event.xdata,event.ydata))</span><br><span class="line">                # 判断列表里的元素有没有两个，一个是起点位置的X轴和Y轴，另一个是终点位置的X轴和Y轴</span><br><span class="line">		if len(coor) == 2:</span><br><span class="line">			print(&quot;起点位置: &#123;&#125; 结束位置: &#123;&#125;&quot;.format(event.xdata,event.ydata))</span><br><span class="line">                         # 将起点位置和终点位置的坐标轴计算长度</span><br><span class="line">			self.jump_to_next(coor.pop(),coor.pop())</span><br><span class="line">			self.need_update = True</span><br><span class="line"></span><br><span class="line">	# 更新图片</span><br><span class="line">	def update_screen(self,frame):</span><br><span class="line">		if self.need_update:</span><br><span class="line">			time.sleep(1)</span><br><span class="line">                        # 重新获取图片</span><br><span class="line">			self.axes_image.set_array(self.get_screen_image())</span><br><span class="line">			self.need_update = False</span><br><span class="line">		return self.axes_image,    # 返回元组类型</span><br><span class="line"></span><br><span class="line">	def main(self):</span><br><span class="line">		figure = plt.figure()    # 创建一张空白的图片</span><br><span class="line">                 #把获取的图片放在坐标轴上~</span><br><span class="line">		self.axes_image = plt.imshow(self.get_screen_image(),animated=True)</span><br><span class="line">                # 绑定鼠标单击事件</span><br><span class="line">		figure.canvas.mpl_connect(&quot;button_press_event&quot;,self.on_calck)</span><br><span class="line">                # 刷新图片</span><br><span class="line">		ani = FuncAnimation(figure,self.update_screen,interval=50,blit=True)</span><br><span class="line">		plt.show()    # 显示</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	w = Wechat_jump()</span><br><span class="line">	w.main()</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/wechat_jump3.gif" alt="演示" title="">
+                </div>
+                <div class="image-caption">演示</div>
+            </figure>
+<p>源代码: <a href="https://github.com/rookiesmile/python/tree/master/Python/wechat_jump" target="_blank" rel="noopener">Github</a><br>有一份的给打包成exe了~adb包也在里面<br>百度云盘：<a href="https://pan.baidu.com/s/1i5TNqbr" target="_blank" rel="noopener">百度云</a>  密码: <code>7jkd</code></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.968Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2018/01/16/wechat-jump/" target="_blank" rel="external">https://liuyangxiong.cn/2018/01/16/wechat-jump/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2018/01/16/wechat-jump/&title=《Python微信跳一跳半自动辅助》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2018/01/16/wechat-jump/&title=《Python微信跳一跳半自动辅助》 — Ape Code&source=我们在青春里得到爱，又在成长中失去爱。
+but，I always love you as before.     ----《你曾经爱我》
+又是许久未更新，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2018/01/16/wechat-jump/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python微信跳一跳半自动辅助》 — Ape Code&url=https://liuyangxiong.cn/2018/01/16/wechat-jump/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2018/01/16/wechat-jump/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/25/xiaohua/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：Python3 爬取校花网
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/25/win-ubuntu-huaping/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：Win7+Ubuntu进入Win7时花屏解决方法">下一篇：Win7+Ubuntu进入Win7时花屏解决方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2018/01/16/wechat-jump/&title=《Python微信跳一跳半自动辅助》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2018/01/16/wechat-jump/&title=《Python微信跳一跳半自动辅助》 — Ape Code&source=我们在青春里得到爱，又在成长中失去爱。
+but，I always love you as before.     ----《你曾经爱我》
+又是许久未更新，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2018/01/16/wechat-jump/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python微信跳一跳半自动辅助》 — Ape Code&url=https://liuyangxiong.cn/2018/01/16/wechat-jump/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2018/01/16/wechat-jump/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQY7CMAwFUO5/aWaLNEz4tstITV5WqJS2r0iWY/vxiNfzZa2P/P729Xj1mhcvDAyM2zKey7W+wbXnrO/74dVgYGAcwPgrgq3PSc5Pwuj6t+vzMTAwMKqXToJjklZiYGBgzANuciRJ+3IeBgYGRrKJTRjzQtvX9+IYGBg3ZORV9////JX+BgYGxq0Yz+JKeNXG5HO8MDAw9mZUi/69BDFpFfSaEBgYGBjVEYrkV71mZ5QsYmBgbMrIByAmZbXkEfMw/eZqGBgYxzDycnwefHtJXt4AwMDAOI1RHbCoBsqkDNcbPsPAwDiBkZfM8nDZG/yqNhUe1awTAwPjhozqhrPXKpiH1+QKGBgYezPyEti1G9Te3FehhYmBgbEFo/qg+bY2eaBJW/TN/4CBgXEAIy/T99oJSYt0NGyBgYFxDKO3He1VwPKXFQ1bYGBgbMpIwtk8cZw3GMotAQwMjO0YVV7+uM3QWbw7BgbGCYxkm5qMZcybBPlwxp89WAwMjGMYeTRL1rroX31NH4YtMDAwtmbkqdtlIbL4gsqZLAYGxnaM+eYzL5b1hsMKm1gMDIyNGL0kr9qM7I1WjHJbDAyMjRjVMNcrxlWblNWtLwYGxgmMarEsT/J6CWJ1RAMDA+McRjXw9Qpq5R12HPoxMDAweoW2JJW8LJRjYGBgxDerBta8tHdxwMXAwLghI9nEJjeYNEdH6SYGBsbWjNGkxqU9xDyhbD4VBgbG/Rg/H8gi4B15zecAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

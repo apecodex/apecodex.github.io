@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Python3 猜数字游戏 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="Python">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便丢去。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3 猜数字游戏">
+<meta property="og:url" content="https://liuyangxiong.cn/2016/12/15/Guess-number/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便丢去。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/Guess_number.png">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3 猜数字游戏">
+<meta name="twitter:description" content="猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便丢去。">
+<meta name="twitter:image" content="http://obf6hf3q0.bkt.clouddn.com/Guess_number.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Python3 猜数字游戏</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-Guess-number"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Python3 猜数字游戏</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2016-12-15 11:25:12" datetime="2016-12-15T03:25:12.000Z"  itemprop="datePublished">2016-12-15</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程/">编程</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">2</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便丢去。</p>
+<a id="more"></a>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">from random import randint</span><br><span class="line">generate_list = []      # 用来放用户所输入的所有数</span><br><span class="line">reset_repeat = &#123;&#125;       # 用来放删除的重复的数</span><br><span class="line">compute_total = &#123;&#125;      # 用来放重复的数</span><br><span class="line">get_list = []           # 获取所有重复的数的个数</span><br><span class="line">cishu = 0</span><br><span class="line">one_num = randint(1,20)         # 生产随机数字</span><br><span class="line">print(&quot;请输入不大于20,不小于0的整数&quot;)</span><br><span class="line">while True:</span><br><span class="line">    cishu+=1</span><br><span class="line">    user_input = input(&quot;&gt;&gt;&gt;&quot;)       # 用户输入</span><br><span class="line">    reset_repeat[user_input]=1</span><br><span class="line">    generate_list.append(user_input)      # 将用户所输入的数字放在 `generate_list` 中</span><br><span class="line">    s = generate_list.count(user_input)   # 获得重复数字的个数</span><br><span class="line">    compute_total[user_input]=s           # 获得重复数字的次数放入 `compute_toatl`</span><br><span class="line">    reset_list = [i for i in generate_list if generate_list.count(i) &gt; 1]     # 去掉重复一次以下的</span><br><span class="line">    get_num = set(reset_list)      # 利用set去掉重复的数字</span><br><span class="line">    reset_list_2 = [i for i in generate_list if generate_list.count(i)]</span><br><span class="line">    L = &#123;&#125;</span><br><span class="line">    len_size = len(set(reset_list_2))</span><br><span class="line">    for i in get_num:             # 遍历get_num,将里面的数添加到 `get_list` </span><br><span class="line">        f = compute_total.get(i)</span><br><span class="line">        get_list.append(f)          </span><br><span class="line">        L[i]=get_list[-1]         # 得到所有数的一次</span><br><span class="line">    if user_input.isnumeric():</span><br><span class="line">        user_input = int(user_input)</span><br><span class="line">        if user_input &gt; 20 or user_input &lt; 0:</span><br><span class="line">            raise &quot;must 0`20!&quot;</span><br><span class="line">        if user_input &gt; one_num:</span><br><span class="line">            if isinstance(user_input,int):</span><br><span class="line">                print(&quot;您猜的是 &apos;%s&apos; 太大了！&quot; % (user_input))</span><br><span class="line">        elif user_input == one_num:</span><br><span class="line">            if isinstance(user_input,int):</span><br><span class="line">                print(&quot;恭喜您！猜对了！&quot;)</span><br><span class="line">                print(&quot;共猜测了&apos;%s&apos;次，此次您输入的数字都有：%s,重复的有: %s,全部重复的只能算一次,所以最后只输入了： %s 所以您只猜了%s次&quot; % (cishu,generate_list,L,sorted(set(reset_list_2)),len_size))</span><br><span class="line">                break</span><br><span class="line">        elif user_input &lt; one_num:</span><br><span class="line">            if isinstance(user_input,int):</span><br><span class="line">                print(&quot;您猜的是 &apos;%s&apos; 太小啦！&quot; % (user_input))</span><br><span class="line">    else:</span><br><span class="line">        raise &quot;must be a intget!&quot;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/Guess_number.png" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure></center>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.960Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2016/12/15/Guess-number/" target="_blank" rel="external">https://liuyangxiong.cn/2016/12/15/Guess-number/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2016/12/15/Guess-number/&title=《Python3 猜数字游戏》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2016/12/15/Guess-number/&title=《Python3 猜数字游戏》 — Ape Code&source=猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2016/12/15/Guess-number/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python3 猜数字游戏》 — Ape Code&url=https://liuyangxiong.cn/2016/12/15/Guess-number/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2016/12/15/Guess-number/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/12/21/baisibudejie/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：python3 爬取 ”百思不得姐“ 所有视频和图片
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/12/14/196-priblem/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：Python3 实现196问题">下一篇：Python3 实现196问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2016/12/15/Guess-number/&title=《Python3 猜数字游戏》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2016/12/15/Guess-number/&title=《Python3 猜数字游戏》 — Ape Code&source=猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2016/12/15/Guess-number/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python3 猜数字游戏》 — Ape Code&url=https://liuyangxiong.cn/2016/12/15/Guess-number/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2016/12/15/Guess-number/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3azWrDMBBF4bz/S7vQVaFIPnfGLVhzvApJLPRpMcyPPh/8XN/P729+Pqtf+cr8reIjQ4aM1zKu7ZMy9u+u1iGw/cHJkCFjAoOHwv0W+7/u2cvvZciQIaNE2id8/F0ZMmTI6ARcXo7ycleGDBkyOkVsGl75hvhqD9TiMmTIeCEjHQz85+c/nG/IkCHjJYwrfNJQy5v+rV3JkCHjaAYfK5LSlKdu6fAAhWMZMmQczUg3lAbTdCTAj1WGDBkTGDxQ1sJimjiSTS+TQhkyZBzNSIeFPFF7qul/E8plyJBxNINkWbzQrYXdILDKkCFjJCNNBDuYzjHdvCVDhoyjGbVNk8CaJou1dFOGDBkTGOmm0+3y6UTr4GTIkDGGwRtt/CJFGo75kECGDBky0hSQDybThBIdigwZMo5m8J/Thj6/u9UfZMqQIWMOgzflecs+fevZxpwMGTJOYvAiljfU+KgyXWG5jgwZMoYx0nDZ2Ry/RoZyWxkyZBzHqLXsa1vh78YlqwwZMgYweHMtLWKfHYUuV5YhQ8bRDNKy5wlfLVjXLl7cJIgyZMg4iFEbKPIWPw+a6ZoyZMiYw+gEO/6fTvhuTWJlyJBxECMNsiTt6wTHWnoqQ4aMCYxOAle7ZlHjyZAhQ0aaDj7bVkvLZhkyZMgg4ZJfwiChnLTtlv+UIUPGAAa/7JWOAdIGHD+mYi0uQ4aMFzL6BWRn2JkeVq0AliFDxmsZX4/6YL7wkuDKAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

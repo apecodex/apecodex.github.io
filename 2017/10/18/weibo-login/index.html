@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Python3 模拟登录新浪微博 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="Python爬虫">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="在无声的世界里，默默地等待着他的出现 ----《声之形》 大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心的～最近也挺忙的……开学了不说～我还报了驾校，也快考科目一了，练习倒库练了一个礼拜，前一个小时倒进去没啥问题的，过了几个小时后又进不去了…….唉。行～废话也不多说，这次我介绍一下如何用Python来登录新浪微博~">
+<meta name="keywords" content="Python爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3 模拟登录新浪微博">
+<meta property="og:url" content="https://liuyangxiong.cn/2017/10/18/weibo-login/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="在无声的世界里，默默地等待着他的出现 ----《声之形》 大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心的～最近也挺忙的……开学了不说～我还报了驾校，也快考科目一了，练习倒库练了一个礼拜，前一个小时倒进去没啥问题的，过了几个小时后又进不去了…….唉。行～废话也不多说，这次我介绍一下如何用Python来登录新浪微博~">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/weibo1.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/weibo2.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/weibo3.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/weibo4.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/weibo5.png">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3 模拟登录新浪微博">
+<meta name="twitter:description" content="在无声的世界里，默默地等待着他的出现 ----《声之形》 大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心的～最近也挺忙的……开学了不说～我还报了驾校，也快考科目一了，练习倒库练了一个礼拜，前一个小时倒进去没啥问题的，过了几个小时后又进不去了…….唉。行～废话也不多说，这次我介绍一下如何用Python来登录新浪微博~">
+<meta name="twitter:image" content="http://obf6hf3q0.bkt.clouddn.com/weibo1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Python3 模拟登录新浪微博</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#访问新浪微博"><span class="post-toc-number">1.</span> <span class="post-toc-text">访问新浪微博</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户名的生成"><span class="post-toc-number">2.</span> <span class="post-toc-text">用户名的生成</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#得到预登录参数"><span class="post-toc-number">3.</span> <span class="post-toc-text">得到预登录参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入帐号密码，登录"><span class="post-toc-number">4.</span> <span class="post-toc-text">输入帐号密码，登录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加密密码"><span class="post-toc-number">5.</span> <span class="post-toc-text">加密密码</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上代码！"><span class="post-toc-number"></span> <span class="post-toc-text">上代码！</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初始化"><span class="post-toc-number">1.</span> <span class="post-toc-text">初始化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Cookie"><span class="post-toc-number">2.</span> <span class="post-toc-text">Cookie</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加密用户名"><span class="post-toc-number">3.</span> <span class="post-toc-text">加密用户名</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取4个参数"><span class="post-toc-number">4.</span> <span class="post-toc-text">获取4个参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加密密码-1"><span class="post-toc-number">5.</span> <span class="post-toc-text">加密密码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POST"><span class="post-toc-number">6.</span> <span class="post-toc-text">POST</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#登录"><span class="post-toc-number">7.</span> <span class="post-toc-text">登录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整代码"><span class="post-toc-number">8.</span> <span class="post-toc-text">完整代码</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-weibo-login"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Python3 模拟登录新浪微博</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2017-10-18 00:51:22" datetime="2017-10-17T16:51:22.000Z"  itemprop="datePublished">2017-10-18</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程/">编程</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">17</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><code>在无声的世界里，默默地等待着他的出现 ----《声之形》</code></p>
+<p>大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心的～最近也挺忙的……开学了不说～我还报了驾校，也快考科目一了，练习倒库练了一个礼拜，前一个小时倒进去没啥问题的，过了几个小时后又进不去了…….唉。行～废话也不多说，这次我介绍一下如何用Python来登录新浪微博~</p>
+<a id="more"></a>
+<h2 id="访问新浪微博"><a href="#访问新浪微博" class="headerlink" title="访问新浪微博"></a>访问新浪微博</h2><p>URL: <a href="http://weibo.com" target="_blank" rel="noopener">http://weibo.com</a>,F12打开开发者工具抓包</p>
+<p>然后什么都不做等待几秒钟后他会出现<code>push_count.json</code>的请求，而且每隔几秒钟就会出现一个</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/weibo1.png" alt="weibologin1" title="">
+                </div>
+                <div class="image-caption">weibologin1</div>
+            </figure>
+<p>js里面的内容是这样的</p>
+<pre><code>try{STK_150823119986721({&quot;code&quot;:1,&quot;data&quot;:{&quot;remind_settings&quot;:{&quot;msgbox&quot;:1},&quot;app_message&quot;:[]}});}catch(e){}
+</code></pre><hr>
+<h2 id="用户名的生成"><a href="#用户名的生成" class="headerlink" title="用户名的生成"></a>用户名的生成</h2><p>接着，输入帐号和密码(只输入，不登录),又抓到了一个<code>prelogin.php</code>的请求，然后刚才出现<code>push_count.json</code>请求的时间会停止轮询~</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/weibo2.png" alt="weibo_login2" title="">
+                </div>
+                <div class="image-caption">weibo_login2</div>
+            </figure>
+<p>看一下他的url</p>
+<pre><code>https://login.sina.com.cn/sso/prelogin.php?entry=weibo&amp;callback=sinaSSOController.preloginCallBack&amp;su=MTQ3MzAxODY3MSU0MHFxLmNvbQ%3D%3D&amp;rsakt=mod&amp;checkpin=1&amp;client=ssologin.js(v1.4.19)&amp;_=1508233679833
+</code></pre><p>这个url里面只需注意一下<code>su</code>参数</p>
+<p><code>MTQ3MzAxODY3MSU0MHFxLmNvbQ%3D%3D</code></p>
+<p>我们用Python里面的base64来解一下<br>不过这里注意一个问题,这个字符串里面<code>%3D%3D</code> base64没法解,但是去掉就会报错:<code>binascii.Error: Incorrect padding</code></p>
+<p>这个问题只需要把 <code>%3D</code> 换成 <code>=</code> 就行了</p>
+<p>用户名中可能包含<code>@</code>这样的符号，解码之后<code>@</code>变成了<code>%40</code></p>
+<pre><code>&gt;&gt;&gt; import base64
+&gt;&gt;&gt; base64.b64decode(&quot;MTQ3MzAxODY3MSU0MHFxLmNvbQ==&quot;)    # %3D 就是 = 两个%3D 就是==
+b&apos;1473018671%40qq.com&apos;                                  # %40就是 @
+&gt;&gt;&gt; 
+</code></pre><p>看见没，和咱们输入的帐号一样~</p>
+<h2 id="得到预登录参数"><a href="#得到预登录参数" class="headerlink" title="得到预登录参数"></a>得到预登录参数</h2><p>咱们已经知道<code>prelogin.php</code>的请求里的<code>su</code>参数是怎么生成的了~所以就只需要把url里面的<code>su</code>参数改一下就可以拿到预登录的数据~<br>接着用浏览器打开刚才抓到的<code>prelogin.php?</code>请求的url,他返回的是:</p>
+<pre><code>sinaSSOController.preloginCallBack({&quot;retcode&quot;:0,&quot;servertime&quot;:1508233777,&quot;pcid&quot;:&quot;gz-074aaac89dd6886019ebc121f0137b79ec17&quot;,&quot;nonce&quot;:&quot;AFJHZY&quot;,&quot;pubkey&quot;:&quot;EB2A38568661887FA180BDDB5CABD5F21C7BFD59C090CB2D245A87AC253062882729293E5506350508E7F9AA3BB77F4333231490F915F6D63C55FE2F08A49B353F444AD3993CACC02DB784ABBB8E42A9B1BBFFFB38BE18D78E87A0E41B9B8F73A928EE0CCEE1F6739884B9777E4FE9E88A1BBE495927AC4A799B3181D6442443&quot;,&quot;rsakv&quot;:&quot;1330428213&quot;,&quot;is_openlock&quot;:0,&quot;showpin&quot;:0,&quot;exectime&quot;:88})
+</code></pre><p>这里面我们需要拿4个参数,<code>servertime</code> <code>nonce</code> <code>pubkey</code> <code>rsakv</code></p>
+<h2 id="输入帐号密码，登录"><a href="#输入帐号密码，登录" class="headerlink" title="输入帐号密码，登录"></a>输入帐号密码，登录</h2><p>现在找一下他的POST参数~接着抓包~<br>在抓包前，先打开<code>preserve log</code>，不然就一闪而过，抓不到了~<br>当输入帐号密码登录之后~你会看见一个<code>login.php?</code>的请求<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/weibo3.png" alt="weibo3" title="">
+                </div>
+                <div class="image-caption">weibo3</div>
+            </figure></p>
+<pre><code>https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.19)
+</code></pre><p>这个url是一个POST，我们可以拿到他POST出去的数据参数，就是<code>Form Data</code>里面的东西<br>有些参数是不是很眼熟呀？～～</p>
+<ul>
+<li><code>su</code>: 用户名，咱们用base64可以搞出来</li>
+<li><code>servertime</code>: 服务器时间，通过预登录得到</li>
+<li><code>nonce</code>: 通过预登录得到</li>
+<li><code>rsakv</code>: 通过预登录得到</li>
+<li><code>sp</code>: 密码,通过rsa加密,这个东西在<code>ssologin.js</code>里面,稍后介绍~</li>
+</ul>
+<p>其他参数保持不变~</p>
+<h2 id="加密密码"><a href="#加密密码" class="headerlink" title="加密密码"></a>加密密码</h2><p>在<code>login.php?client=ssologin.js(v1.4.19)</code> 下面有一个<code>ssologin.js</code><br>顺便看一下<code>home?wvr=5&amp;lf=reg</code>我们后面会用到~</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/weibo4.png" alt="weibo4" title="">
+                </div>
+                <div class="image-caption">weibo4</div>
+            </figure>
+<p>长达2000多行~~在900行左右你会看见……</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/weibo5.png" alt="weibo5" title="">
+                </div>
+                <div class="image-caption">weibo5</div>
+            </figure>
+<p>是吧！我们得到这个东西</p>
+<pre><code>var RSAKey = new sinaSSOEncoder.RSAKey();
+RSAKey.setPublic(me.rsaPubkey, &quot;10001&quot;);
+password = RSAKey.encrypt([me.servertime, me.nonce].join(&quot;\t&quot;) + &quot;\n&quot; + password)
+</code></pre><p>加密方法~他有两种加密方法~就看RSA就行了~<br>注意一下 <code>&#39;10001&#39;</code> 需要转换成<code>十进制</code>就是 <code>65537</code></p>
+<h1 id="上代码！"><a href="#上代码！" class="headerlink" title="上代码！"></a>上代码！</h1><p>需要用到的模块:</p>
+<pre><code>import urllib
+import urllib.request
+import urllib.parse
+import base64
+import rsa
+import json
+import http.cookiejar
+import binascii
+import re
+from bs4 import BeautifulSoup
+</code></pre><p>需要安装的模块:</p>
+<pre><code>pip install rsa
+pip install bs4
+</code></pre><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>初始化<code>username</code> 和 <code>password</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class WeiboLogin():</span><br><span class="line"></span><br><span class="line">    def __init__(self,username,password):</span><br><span class="line">        self.username = username</span><br><span class="line">        self.password = password</span><br></pre></td></tr></table></figure>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>建立一个cookies，用于登录过程的cookies绑定~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def enableCookies(self):</span><br><span class="line">    # 建立一个cookies 容器</span><br><span class="line">    cookie_container = http.cookiejar.CookieJar()</span><br><span class="line">    # 将一个cookies容器和一个HTTP的cookie的处理器绑定</span><br><span class="line">    cookie_support = urllib.request.HTTPCookieProcessor(cookie_container)</span><br><span class="line">    # 创建一个opener,设置一个handler用于处理http的url打开</span><br><span class="line">    opener = urllib.request.build_opener(cookie_support, urllib.request.HTTPHandler)</span><br><span class="line">    # 安装opener，此后调用urlopen()时会使用安装过的opener对象</span><br><span class="line">    urllib.request.install_opener(opener)</span><br></pre></td></tr></table></figure>
+<h2 id="加密用户名"><a href="#加密用户名" class="headerlink" title="加密用户名"></a>加密用户名</h2><p>解码之后<code>@</code>变成了<code>%40</code>,如果帐号的纯数字的，会出现<code>%3D</code>,对应为<code>=</code><br>加密之前必须先把username字符串转化成url的编码样式，实现这一功能的是<code>urllib.request.qoute</code><br>base64编码是bytes的形式，但是我们需要得到str,才能被接受</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def getusername(self):</span><br><span class="line">    username_req_qo = urllib.request.quote(self.username)</span><br><span class="line">    username_bsencode = base64.b64encode(bytes(username_req_qo,encoding=&apos;utf-8&apos;))</span><br><span class="line">    return username_bsencode.decode(&quot;utf-8&quot;).split(&quot;=&quot;)[0]</span><br></pre></td></tr></table></figure>
+<h2 id="获取4个参数"><a href="#获取4个参数" class="headerlink" title="获取4个参数"></a>获取4个参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def getprelogin(self):</span><br><span class="line">    prelogin_url = &quot;https://login.sina.com.cn/sso/prelogin.php?entry=weibo&amp;callback=sinaSSOController.preloginCallBack&amp;su=&#123;&#125;&amp;rsakt=mod&amp;checkpin=1&amp;client=ssologin.js(v1.4.19)&amp;_=1507974787556&quot;.format(self.getusername())</span><br><span class="line">    pre = re.compile(&apos;sinaSSOController.preloginCallBack(.*)&apos;)</span><br><span class="line">    request = urllib.request.Request(prelogin_url)</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    read_data = response.read().decode(&quot;utf-8&quot;)</span><br><span class="line">    date = pre.search(read_data).group(1)[1:-1]</span><br><span class="line">    date_json = json.loads(date)</span><br><span class="line">    servertime = str(date_json[&apos;servertime&apos;])</span><br><span class="line">    nonce = date_json[&apos;nonce&apos;]</span><br><span class="line">    pubkey = date_json[&apos;pubkey&apos;]</span><br><span class="line">    rsakv = date_json[&apos;rsakv&apos;]</span><br><span class="line">    return servertime,nonce,pubkey,rsakv</span><br></pre></td></tr></table></figure>
+<h2 id="加密密码-1"><a href="#加密密码-1" class="headerlink" title="加密密码"></a>加密密码</h2><p>上面说过了<code>&#39;10001&#39;</code> 需要转换成<code>十进制</code>就是 <code>65537</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def getpassword(self):</span><br><span class="line">    servertime,nonce,pubkey,rsakv = self.getprelogin()</span><br><span class="line">    pw_string = str(servertime) + &apos;\t&apos; + str(nonce) + &apos;\n&apos; + str(self.password)</span><br><span class="line">    key = rsa.PublicKey(int(pubkey,16),65537)    # 10001 == 65537  转10进制</span><br><span class="line">    pw_encrypt = rsa.encrypt(pw_string.encode(&apos;utf-8&apos;),key)</span><br><span class="line">    self.password = &apos;&apos;    # 安全起见~清空密码~</span><br><span class="line">    passwd = binascii.b2a_hex(pw_encrypt)</span><br><span class="line">    return passwd</span><br></pre></td></tr></table></figure>
+<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def build_post_data(self):</span><br><span class="line">    servertime, nonce, pubkey, rsakv = self.getprelogin()</span><br><span class="line">    post_data = &#123;</span><br><span class="line">        &apos;entry&apos;: &apos;weibo&apos;,</span><br><span class="line">        &apos;gateway&apos;: &apos;1&apos;,</span><br><span class="line">        &apos;from&apos;: &apos;&apos;,</span><br><span class="line">        &apos;savestate&apos;: &apos;7&apos;,</span><br><span class="line">        &apos;qrcode_flag&apos;: &apos;false&apos;,</span><br><span class="line">        &apos;useticket&apos;: &apos;1&apos;,</span><br><span class="line">        &quot;pagerefer&quot;:&quot;http://passport.weibo.com/visitor/visitor?entry=miniblog&amp;a=enter&amp;url=http%3A%2F%2Fweibo.com%2F&amp;domain=.weibo.com&amp;ua=php-sso_sdk_client-0.6.14&quot;,</span><br><span class="line">        &apos;vsnf&apos;: &apos;1&apos;,</span><br><span class="line">        &apos;su&apos;: self.getusername(),</span><br><span class="line">        &apos;service&apos;:&apos;miniblog&apos;,</span><br><span class="line">        &apos;servertime&apos;: servertime,</span><br><span class="line">        &apos;nonce&apos;: nonce,</span><br><span class="line">        &apos;pwencode&apos;: &apos;rsa2&apos;,</span><br><span class="line">        &apos;rsakv&apos;: rsakv,</span><br><span class="line">        &apos;sp&apos;: self.getpassword(),</span><br><span class="line">        &apos;sr&apos;: &apos;1920 * 1080&apos;,</span><br><span class="line">        &apos;ncoding&apos;: &apos;UTF - 8&apos;,</span><br><span class="line">        &apos;prelt&apos;: &apos;912&apos;,</span><br><span class="line">        &apos;url&apos;: &quot;http://weibo.com/ajaxlogin.php?framelogin=1&amp;callback=parent.sinaSSOController.feedBackUrlCallBack&quot;,</span><br><span class="line">        &apos;returntype&apos;: &apos;META&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    data = urllib.parse.urlencode(post_data).encode(&apos;utf-8&apos;)</span><br><span class="line">    return data</span><br></pre></td></tr></table></figure>
+<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def login(self):</span><br><span class="line">    url = &apos;https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.19)&apos;</span><br><span class="line">    data = self.build_post_data()</span><br><span class="line">    self.enableCookies()</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36&quot;&#125;</span><br><span class="line">    requests1 = urllib.request.Request(url,data=data,headers=headers)</span><br><span class="line">    reqopen1 = urllib.request.urlopen(requests1)</span><br><span class="line">    reqread1 = reqopen1.read().decode(&quot;GBK&quot;)</span><br><span class="line">    print(reqread1)</span><br></pre></td></tr></table></figure>
+<p>到这一步登录之后，恶心的重定向出现了…..</p>
+<p>返回的内容:</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;新浪通行证&lt;/title&gt;
+&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=&amp;#39;https://login.sina.com.cn/crossdomain2.php?action=login&amp;entry=weibo&amp;r=https%3A%2F%2Fpassport.weibo.com%2Fwbsso%2Flogin%3Fssosavestate%3D1539793002%26url%3Dhttp%253A%252F%252Fweibo.com%252Fajaxlogin.php%253Fframelogin%253D1%2526callback%253Dparent.sinaSSOController.feedBackUrlCallBack%26ticket%3DST-NTUxMzA4ODA3Mw%3D%3D-1508257002-gz-755E02FA479243D1D971FC7697414B96-1%26retcode%3D0&amp;sr=1920+%2A+1080&amp;#39;&quot;/&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=GBK&quot; /&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#ffffff&quot; text=&quot;#000000&quot; link=&quot;#0000cc&quot; vlink=&quot;#551a8b&quot; alink=&quot;#ff0000&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;
+location.replace(&quot;https://login.sina.com.cn/crossdomain2.php?action=login&amp;entry=weibo&amp;r=https%3A%2F%2Fpassport.weibo.com%2Fwbsso%2Flogin%3Fssosavestate%3D1539793002%26url%3Dhttp%253A%252F%252Fweibo.com%252Fajaxlogin.php%253Fframelogin%253D1%2526callback%253Dparent.sinaSSOController.feedBackUrlCallBack%26ticket%3DST-NTUxMzA4ODA3Mw%3D%3D-1508257002-gz-755E02FA479243D1D971FC7697414B96-1%26retcode%3D0&amp;sr=1920+%2A+1080&quot;);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>重定向的url写在 location.replace的后面<br>可以用正则，可以用bs4或者你觉得有更好的方法</p>
+<p>更改一下，我用bs4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def login(self):</span><br><span class="line">    url = &apos;https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.19)&apos;</span><br><span class="line">    data = self.build_post_data()</span><br><span class="line">    self.enableCookies()</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36&quot;&#125;</span><br><span class="line">    requests1 = urllib.request.Request(url,data=data,headers=headers)</span><br><span class="line">    reqopen1 = urllib.request.urlopen(requests1)</span><br><span class="line">    reqread1 = reqopen1.read().decode(&quot;GBK&quot;)</span><br><span class="line">    bs = BeautifulSoup(reqread1,&apos;lxml&apos;)</span><br><span class="line">    bfind = bs.find(&apos;script&apos;)</span><br><span class="line">    for i in bfind:</span><br><span class="line">        p = i.strip().split(&apos;&quot;&apos;)[1]</span><br><span class="line">    requests2 = urllib.request.Request(p)</span><br><span class="line">    reqopen2 = urllib.request.urlopen(requests2)</span><br><span class="line">    reqread2 = reqopen2.read()</span><br><span class="line">    print(reqread2)</span><br></pre></td></tr></table></figure>
+<p>然后….</p>
+<pre><code>b&apos;&lt;html&gt;\n&lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=GBK&quot; /&gt;\n&lt;title&gt;\xd0\xc2\xc0\xcb\xcd\xa8\xd0\xd0\xd6\xa4&lt;/title&gt;\n\n\n&lt;script charset=&quot;utf-8&quot; src=&quot;https://i.sso.sina.com.cn/js/ssologin.js&quot;&gt;&lt;/script&gt;\n&lt;/head&gt;\n&lt;body&gt;\n\xd5\xfd\xd4\xda\xb5\xc7\xc2\xbc ...\n&lt;script&gt;\ntry{sinaSSOController.setCrossDomainUrlList({&quot;retcode&quot;:0,&quot;arrURL&quot;:[&quot;https:\\/\\/passport.weibo.com\\/wbsso\\/login?ticket=ST-NTUxMzA4ODA3Mw%3D%3D-1508257418-gz-1D704A04699B6A20EFE6F4123E677198-1&amp;ssosavestate=1539793417&quot;,&quot;https:\\/\\/passport.97973.com\\/sso\\/crossdomain?action=login&amp;savestate=1539793417&quot;,&quot;https:\\/\\/passport.weibo.cn\\/sso\\/crossdomain?action=login&amp;savestate=1&quot;]});}\n\t\tcatch(e){\n\t\t\tvar msg = e.message;\n\t\t\tvar img = new Image();\n\t\t\tvar type = 1;\n\t\t\timg.src = \&apos;https://login.sina.com.cn/sso/debuglog?msg=\&apos; + msg +\&apos;&amp;type=\&apos; + type;\n\t\t}try{sinaSSOController.crossDomainAction(\&apos;login\&apos;,function(){location.replace(\&apos;https://passport.weibo.com/wbsso/login?ssosavestate=1539793417&amp;url=http%3A%2F%2Fweibo.com%2Fajaxlogin.php%3Fframelogin%3D1%26callback%3Dparent.sinaSSOController.feedBackUrlCallBack&amp;ticket=ST-NTUxMzA4ODA3Mw==-1508257417-gz-64BE9EFA64E07479B7DB6F8882CA661C-1&amp;retcode=0\&apos;);});}\n\t\tcatch(e){\n\t\t\tvar msg = e.message;\n\t\t\tvar img = new Image();\n\t\t\tvar type = 2;\n\t\t\timg.src = \&apos;https://login.sina.com.cn/sso/debuglog?msg=\&apos; + msg +\&apos;&amp;type=\&apos; + type;\n\t\t}\n&lt;/script&gt;\n&lt;/body&gt;\n&lt;/html&gt;&apos;
+</code></pre><p>又是一个重定向…….<br>好嘞~bs4不好抓了~用正则吧~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def login(self):</span><br><span class="line">    url = &apos;https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.19)&apos;</span><br><span class="line">    data = self.build_post_data()</span><br><span class="line">    self.enableCookies()</span><br><span class="line">    headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36&quot;&#125;</span><br><span class="line">    requests1 = urllib.request.Request(url,data=data,headers=headers)</span><br><span class="line">    reqopen1 = urllib.request.urlopen(requests1)</span><br><span class="line">    reqread1 = reqopen1.read().decode(&quot;GBK&quot;)</span><br><span class="line">    bs = BeautifulSoup(reqread1,&apos;lxml&apos;)</span><br><span class="line">    bfind = bs.find(&apos;script&apos;)</span><br><span class="line">    for i in bfind:</span><br><span class="line">        p = i.strip().split(&apos;&quot;&apos;)[1]</span><br><span class="line">    requests2 = urllib.request.Request(p)</span><br><span class="line">    reqopen2 = urllib.request.urlopen(requests2)</span><br><span class="line">    reqread2 = reqopen2.read()</span><br><span class="line">    bss = BeautifulSoup(reqread2,&apos;lxml&apos;)</span><br><span class="line">    bff = bss.find_all(&apos;script&apos;)[1]</span><br><span class="line">    try:</span><br><span class="line">        p2 = re.compile(r&apos;location.replace(.*?);&#125;&apos;)</span><br><span class="line">        for i in bff:</span><br><span class="line">            get_p2 = p2.findall(i)[0][2:-2]</span><br><span class="line">        requests3 = urllib.request.Request(get_p2)</span><br><span class="line">        reqopen3 = urllib.request.urlopen(requests3)</span><br><span class="line">        reqread3 = reqopen3.read().decode(&apos;utf-8&apos;)</span><br><span class="line">        print(reqread3)</span><br><span class="line">    except IndexError:</span><br><span class="line">        print(&quot;Login Error!&quot;)</span><br></pre></td></tr></table></figure>
+<p>返回结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/python3.5 /home/crazyrookie/Documents/Python/reptile/weibo_login.py</span><br><span class="line">&lt;html&gt;&lt;head&gt;&lt;script language=&apos;javascript&apos;&gt;parent.sinaSSOController.feedBackUrlCallBack(&#123;&quot;result&quot;:true,&quot;userinfo&quot;:&#123;&quot;uniqueid&quot;:&quot;5513088073&quot;,&quot;userid&quot;:null,&quot;displayname&quot;:null,&quot;userdomain&quot;:&quot;?wvr=5&amp;lf=reg&quot;&#125;&#125;);&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>又是一个重定向…….<br>但是注意到里面有个<code>?wvr=5&amp;lf=reg</code>字段，看看刚才手工登陆抓到的包，就是我让各位<code>顺便看一下</code>的那个地方,这是是主页链接的一部分。<br>再写一个正则,把<code>?wvr=5&amp;lf=reg</code>拼接一个url出来，就可以轻松而愉悦地模拟登陆了！</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line">import base64</span><br><span class="line">import rsa</span><br><span class="line">import json</span><br><span class="line">import http.cookiejar</span><br><span class="line">import binascii</span><br><span class="line">import re</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class WeiboLogin():</span><br><span class="line"></span><br><span class="line">    def __init__(self,username,password):</span><br><span class="line">        self.username = username</span><br><span class="line">        self.password = password</span><br><span class="line"></span><br><span class="line">    def enableCookies(self):</span><br><span class="line">        # 建立一个cookies 容器</span><br><span class="line">        cookie_container = http.cookiejar.CookieJar()</span><br><span class="line">        # 将一个cookies容器和一个HTTP的cookie的处理器绑定</span><br><span class="line">        cookie_support = urllib.request.HTTPCookieProcessor(cookie_container)</span><br><span class="line">        # 创建一个opener,设置一个handler用于处理http的url打开</span><br><span class="line">        opener = urllib.request.build_opener(cookie_support, urllib.request.HTTPHandler)</span><br><span class="line">        # 安装opener，此后调用urlopen()时会使用安装过的opener对象</span><br><span class="line">        urllib.request.install_opener(opener)</span><br><span class="line"></span><br><span class="line">    # 加密用户名</span><br><span class="line">    def getusername(self):</span><br><span class="line">        username_req_qo = urllib.request.quote(self.username)</span><br><span class="line">        username_bsencode = base64.b64encode(bytes(username_req_qo,encoding=&apos;utf-8&apos;))</span><br><span class="line">        return username_bsencode.decode(&quot;utf-8&quot;).split(&quot;=&quot;)[0]</span><br><span class="line"></span><br><span class="line">    # 得到servertime,nonce,pubkey,rsakv</span><br><span class="line">    # 输入用户名和密码之后（不登录）会出现一个prologin的预登陆的包</span><br><span class="line">    def getprelogin(self):</span><br><span class="line">        prelogin_url = &quot;https://login.sina.com.cn/sso/prelogin.php?entry=weibo&amp;callback=sinaSSOController.preloginCallBack&amp;su=&#123;&#125;&amp;rsakt=mod&amp;checkpin=1&amp;client=ssologin.js(v1.4.19)&amp;_=1507974787556&quot;.format(self.getusername())</span><br><span class="line">        pre = re.compile(&apos;sinaSSOController.preloginCallBack(.*)&apos;)</span><br><span class="line">        request = urllib.request.Request(prelogin_url)</span><br><span class="line">        response = urllib.request.urlopen(request)</span><br><span class="line">        read_data = response.read().decode(&quot;utf-8&quot;)</span><br><span class="line">        date = pre.search(read_data).group(1)[1:-1]</span><br><span class="line">        date_json = json.loads(date)</span><br><span class="line">        servertime = str(date_json[&apos;servertime&apos;])</span><br><span class="line">        nonce = date_json[&apos;nonce&apos;]</span><br><span class="line">        pubkey = date_json[&apos;pubkey&apos;]</span><br><span class="line">        rsakv = date_json[&apos;rsakv&apos;]</span><br><span class="line">        return servertime,nonce,pubkey,rsakv</span><br><span class="line"></span><br><span class="line">    # 加密密码</span><br><span class="line">    def getpassword(self):</span><br><span class="line">        servertime,nonce,pubkey,rsakv = self.getprelogin()</span><br><span class="line">        pw_string = str(servertime) + &apos;\t&apos; + str(nonce) + &apos;\n&apos; + str(self.password)</span><br><span class="line">        key = rsa.PublicKey(int(pubkey,16),65537)    # 10001 == 65537  转10进制</span><br><span class="line">        pw_encrypt = rsa.encrypt(pw_string.encode(&apos;utf-8&apos;),key)</span><br><span class="line">        self.password = &apos;&apos;    # 安全起见~清空密码~</span><br><span class="line">        passwd = binascii.b2a_hex(pw_encrypt)</span><br><span class="line">        return passwd</span><br><span class="line"></span><br><span class="line">    # POST参数</span><br><span class="line">    def build_post_data(self):</span><br><span class="line">        servertime, nonce, pubkey, rsakv = self.getprelogin()</span><br><span class="line">        post_data = &#123;</span><br><span class="line">            &apos;entry&apos;: &apos;weibo&apos;,</span><br><span class="line">            &apos;gateway&apos;: &apos;1&apos;,</span><br><span class="line">            &apos;from&apos;: &apos;&apos;,</span><br><span class="line">            &apos;savestate&apos;: &apos;7&apos;,</span><br><span class="line">            &apos;qrcode_flag&apos;: &apos;false&apos;,</span><br><span class="line">            &apos;useticket&apos;: &apos;1&apos;,</span><br><span class="line">            &quot;pagerefer&quot;:&quot;http://passport.weibo.com/visitor/visitor?entry=miniblog&amp;a=enter&amp;url=http%3A%2F%2Fweibo.com%2F&amp;domain=.weibo.com&amp;ua=php-sso_sdk_client-0.6.14&quot;,</span><br><span class="line">            &apos;vsnf&apos;: &apos;1&apos;,</span><br><span class="line">            &apos;su&apos;: self.getusername(),</span><br><span class="line">            &apos;service&apos;:&apos;miniblog&apos;,</span><br><span class="line">            &apos;servertime&apos;: servertime,</span><br><span class="line">            &apos;nonce&apos;: nonce,</span><br><span class="line">            &apos;pwencode&apos;: &apos;rsa2&apos;,</span><br><span class="line">            &apos;rsakv&apos;: rsakv,</span><br><span class="line">            &apos;sp&apos;: self.getpassword(),</span><br><span class="line">            &apos;sr&apos;: &apos;1920 * 1080&apos;,</span><br><span class="line">            &apos;ncoding&apos;: &apos;UTF - 8&apos;,</span><br><span class="line">            &apos;prelt&apos;: &apos;912&apos;,</span><br><span class="line">            &apos;url&apos;: &quot;http://weibo.com/ajaxlogin.php?framelogin=1&amp;callback=parent.sinaSSOController.feedBackUrlCallBack&quot;,</span><br><span class="line">            &apos;returntype&apos;: &apos;META&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        data = urllib.parse.urlencode(post_data).encode(&apos;utf-8&apos;)</span><br><span class="line">        return data</span><br><span class="line"></span><br><span class="line">    def login(self):</span><br><span class="line">        url = &apos;https://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.19)&apos;</span><br><span class="line">        data = self.build_post_data()</span><br><span class="line">        self.enableCookies()</span><br><span class="line">        headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36&quot;&#125;</span><br><span class="line">        requests1 = urllib.request.Request(url,data=data,headers=headers)</span><br><span class="line">        reqopen1 = urllib.request.urlopen(requests1)</span><br><span class="line">        reqread1 = reqopen1.read().decode(&quot;GBK&quot;)</span><br><span class="line">        bs = BeautifulSoup(reqread1,&apos;lxml&apos;)</span><br><span class="line">        bfind = bs.find(&apos;script&apos;)</span><br><span class="line">        for i in bfind:</span><br><span class="line">            p = i.strip().split(&apos;&quot;&apos;)[1]</span><br><span class="line">        requests2 = urllib.request.Request(p)</span><br><span class="line">        reqopen2 = urllib.request.urlopen(requests2)</span><br><span class="line">        reqread2 = reqopen2.read()</span><br><span class="line">        bss = BeautifulSoup(reqread2,&apos;lxml&apos;)</span><br><span class="line">        bff = bss.find_all(&apos;script&apos;)[1]</span><br><span class="line">        try:</span><br><span class="line">            p2 = re.compile(r&apos;location.replace(.*?);&#125;&apos;)</span><br><span class="line">            p3 = re.compile(r&apos;&quot;userdomain&quot;:&quot;(.*?)&quot;&apos;)</span><br><span class="line">            for i in bff:</span><br><span class="line">                get_p2 = p2.findall(i)[0][2:-2]</span><br><span class="line">            requests3 = urllib.request.Request(get_p2)</span><br><span class="line">            reqopen3 = urllib.request.urlopen(requests3)</span><br><span class="line">            reqread3 = reqopen3.read().decode(&apos;utf-8&apos;)</span><br><span class="line">            userdomain = p3.findall(reqread3)</span><br><span class="line">            login_url = &apos;http://weibo.com/&apos; + userdomain[0]</span><br><span class="line">            requests4 = urllib.request.Request(login_url)</span><br><span class="line">            reqopen4 = urllib.request.urlopen(requests4)</span><br><span class="line">            reqread4 = reqopen4.read().decode(&apos;utf-8&apos;)</span><br><span class="line">            bs_date = BeautifulSoup(reqread4,&apos;lxml&apos;)</span><br><span class="line">            bfind_nick_uid = bs_date.find_all(&apos;script&apos;)</span><br><span class="line">            nick_re = re.compile(&quot;CONFIG\[&apos;nick&apos;\]=&apos;.*?&apos;;&quot;)</span><br><span class="line">            uin_re = re.compile(&quot;CONFIG\[&apos;uid&apos;\]=&apos;.*?&apos;;&quot;)</span><br><span class="line">            for i in bfind_nick_uid[2]:</span><br><span class="line">                print(&quot;Login success!&quot;)</span><br><span class="line">                print(&quot;Usernmae:&quot;,nick_re.search(i.strip()).group().split(&apos;=&apos;)[1][1:-2],&quot;Uin:&quot;,uin_re.search(i).group().split(&apos;=&apos;)[1][1:-2])</span><br><span class="line">        except IndexError:</span><br><span class="line">            print(&quot;Login Error!&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    w = WeiboLogin(&apos;&apos;,&apos;&apos;)</span><br><span class="line">    w.login()</span><br></pre></td></tr></table></figure>
+<p>结果如下:</p>
+<pre><code>Login success!
+Usernmae: 呆呆的设计师 Uin: 5513088073
+</code></pre><blockquote>
+<p>到此结束,如果发现有啥地方不对劲或者没理解的地方可以在下面的评论区写下~<br>Thanks~</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.972Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2017/10/18/weibo-login/" target="_blank" rel="external">https://liuyangxiong.cn/2017/10/18/weibo-login/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2017/10/18/weibo-login/&title=《Python3 模拟登录新浪微博》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2017/10/18/weibo-login/&title=《Python3 模拟登录新浪微博》 — Ape Code&source=在无声的世界里，默默地等待着他的出现 ----《声之形》
+大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2017/10/18/weibo-login/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python3 模拟登录新浪微博》 — Ape Code&url=https://liuyangxiong.cn/2017/10/18/weibo-login/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2017/10/18/weibo-login/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/25/win-ubuntu-huaping/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：Win7+Ubuntu进入Win7时花屏解决方法
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/21/wangyiyunyinyue/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库">下一篇：爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2017/10/18/weibo-login/&title=《Python3 模拟登录新浪微博》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2017/10/18/weibo-login/&title=《Python3 模拟登录新浪微博》 — Ape Code&source=在无声的世界里，默默地等待着他的出现 ----《声之形》
+大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2017/10/18/weibo-login/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python3 模拟登录新浪微博》 — Ape Code&url=https://liuyangxiong.cn/2017/10/18/weibo-login/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2017/10/18/weibo-login/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3a0U7DMAwF0P3/TxeJJ6RBe22v00hOnqYJ2pwgGTv24xGv43s9f/75zfPPPH+f/9bjjoWBgfFvGcfpShhz6vlzzveGgYGxDyPZ1vkr85DaO76L92JgYGAE6V0eHPOAjoGBgdELuOfbmheuGBgYGJMitrqJ87e8Kn3EwMDYgTFpDNz9+U39DQwMjA9mHMWVvD7ZRDW4X+wKAwNjacZ5uzEqHePRinwso5d6YmBg7MzoXa7ll27zRikGBsYOjOT1eQjOr8/yY80PCAMDY23GJDjm5W6PlzdTMTAw1mPkrcpeEtlLBMtPw8DAWJrRqwTzVPI9AxwYGBg7MJIQVi1re+3M6pMxMDB2YFSDXXV461Xp4EXRi4GBsQGjmjPOL+aqz7w4IAwMjM0YvWuy6nBGL8j+GbIxMDCWZuStxGqrstpHrQ5hXPxNMDAwlmNUA+V8W72WQ3Qxh4GBsSijeik/uRqrppuFhBIDA2MbxnycYh5Aq99gYGCszahegd2dICbPL580BgbGEozqdqtb6Y1uFApgDAyMpRl3hN1JupmsN/33wMDA+BjGUVy9kJo3NfOLtl/GwjAwMBZlTMLcZGwieXL1yDAwMNZmVINsbxOTlkOhIsfAwFiakQ9M5JXja4vY8lwbBgbGloz8Er+XmeZl842NTAwMjCUY1RSwWgznhzLqx2JgYPxDRlLE5ilgPoo6v+DDwMDYgfGCArLV2kyCaXOkFQMDYx3GFw4fIuDAdfynAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

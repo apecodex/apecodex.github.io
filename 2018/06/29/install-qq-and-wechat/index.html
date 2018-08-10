@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu18.04 安装最新版QQ和微信 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="ubuntu">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="不久前我还在用Ubuntu17.10，如果不出意外的话，估计我会一直用到18.10的出现，对～如果不出意外的话……">
+<meta name="keywords" content="ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu18.04 安装最新版QQ和微信">
+<meta property="og:url" content="https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="不久前我还在用Ubuntu17.10，如果不出意外的话，估计我会一直用到18.10的出现，对～如果不出意外的话……">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/415f82b9ly1fcme53ocgoj20ku0iqwin.jpg">
+<meta property="og:image" content="https://www.xuehua.us/wp-content/uploads/2018/04/b2d75a92.jpg">
+<meta property="og:image" content="http://pic.pedaily.cn/201603/2016331023327410.jpeg">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_effect.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_font.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_fix_font.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_qq_effect.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_effect.png">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu18.04 安装最新版QQ和微信">
+<meta name="twitter:description" content="不久前我还在用Ubuntu17.10，如果不出意外的话，估计我会一直用到18.10的出现，对～如果不出意外的话……">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/large/415f82b9ly1fcme53ocgoj20ku0iqwin.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu18.04 安装最新版QQ和微信</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装QQ"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装QQ</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决按钮的提示文字是□"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">解决按钮的提示文字是□</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装微信"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装微信</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#以下是安装过程："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">以下是安装过程：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-install-qq-and-wechat"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu18.04 安装最新版QQ和微信</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-06-29 22:50:54" datetime="2018-06-29T14:50:54.000Z"  itemprop="datePublished">2018-06-29</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ubuntu/">ubuntu</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>不久前我还在用Ubuntu17.10，如果不出意外的话，估计我会一直用到18.10的出现，对～如果不出意外的话……</p>
+<a id="more"></a>
+<p><img src="http://wx2.sinaimg.cn/large/415f82b9ly1fcme53ocgoj20ku0iqwin.jpg" width="10" height="20" align="center"></p>
+<p>也许命中注定～最后还是出现了问题（可能是我没更新到18.04或其他的原因），开机有点吓人，ubuntu的图标一闪一闪的，必须要关闭电源重新打开才能进入界面。接着我赶紧把文件备份了一下～我也不记得我改了啥东西，也就是没开机半个月左右…….</p>
+<p><img src="https://www.xuehua.us/wp-content/uploads/2018/04/b2d75a92.jpg" width="100" height="100" align="center"></p>
+<p>然后就打算重新换了发行版的试试，通过推荐，最终选择了<a href="https://manjaro.org/" target="_blank" rel="noopener">Manjaro</a>的KDE Edition（从我开始用LINUX就没有用过Gnome以外的桌面……）<br>刚开始是听说介个系统居然是全球排名第二！！！接着又听说可以用AUR软件包，回家之后便将这个系统给换上了。但用了不到两天，我就给换回<code>Ubuntu18.04</code>了~估计是我不会玩的缘故……有感兴趣的可以装一个试试看～</p>
+<p><img src="http://pic.pedaily.cn/201603/2016331023327410.jpeg" align="center"></p>
+<p>不多说，进入主题~~~</p>
+<p> ————————华丽的分割线———————</p>
+<h2 id="安装QQ"><a href="#安装QQ" class="headerlink" title="安装QQ"></a>安装QQ</h2><p>Frist～先去这位大佬的空间里下载QQ安装包 <a href="https://phpcj.org/wineqq/" target="_blank" rel="noopener">点我点我!!!</a></p>
+<p>下载完成之后进入你的用户主目录，解压</p>
+<pre><code>&gt;&gt;&gt; cd ~
+&gt;&gt;&gt; tar xvf wineQQ9.0.3_23729.tar.xz -C ~/
+</code></pre><p>到这里你就可以在应用程序列表里看见Wine QQ这个图标了</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_effect.png" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure>
+<p>但是还没法打开，因为还没有安装wine环境呐～所以还不能用。</p>
+<pre><code>&gt;&gt;&gt; sudo apt-get updata
+&gt;&gt;&gt; sudo apt-get install wine32
+</code></pre><p>接着就可以在应用程序列表打开<code>Wine QQ</code>了,但是有些按钮的提示文字是□，没法显示中文,这个可以替换字体来修复</p>
+<h3 id="解决按钮的提示文字是□"><a href="#解决按钮的提示文字是□" class="headerlink" title="解决按钮的提示文字是□"></a>解决按钮的提示文字是□</h3><p>先从Windows系统中把微软雅黑字体提取出来（在系统分区的Windows/Fonts目录下），搜索关键字能找到4个文件，分别是msyh.ttc，msyhbd.ttc，msyhl.ttc，simsun.ttc<br>其实也就是常规字体、粗体和细体，把它们（只复制第一个也可以）复制到Ubuntu系统用户主目录的.wine/drive_c/windows/Fonts目录下面，.wine是隐藏文件夹，在主目录文件夹里按Ctrl+H即可显示。</p>
+<p>如果找不到这四个字体的话…我给各位打包了～<a href="http://obf6hf3q0.bkt.clouddn.com/%E5%BE%AE%E8%BD%AF%E5%AD%97%E4%BD%93.zip" target="_blank" rel="noopener">点击我下载</a></p>
+<p>解压后将四个文件copy到Ubuntu系统用户主目录的.wine/drive_c/windows/Fonts目录下面</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_font.png" alt="2" title="">
+                </div>
+                <div class="image-caption">2</div>
+            </figure>
+<p>然后随便找个地方新建一个空文本，取名为msyh_font.reg（后缀是reg即可，文件名随便取的）</p>
+<pre><code>&gt;&gt;&gt; sudo gedit msyh_font.reg
+</code></pre><p>接着再把下面内容复制进去</p>
+<pre><code>REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink]
+&quot;Lucida Sans Unicode&quot;=&quot;msyh.ttc&quot;
+&quot;Microsoft Sans Serif&quot;=&quot;msyh.ttc&quot;
+&quot;MS Sans Serif&quot;=&quot;msyh.ttc&quot;
+&quot;Tahoma&quot;=&quot;msyh.ttc&quot;
+&quot;Tahoma Bold&quot;=&quot;msyhbd.ttc&quot;
+&quot;msyh&quot;=&quot;msyh.ttc&quot;
+&quot;Arial&quot;=&quot;msyh.ttc&quot;
+&quot;Arial Black&quot;=&quot;msyh.ttc&quot;
+</code></pre><p>保存好之后，终端执行命令才能生效：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; regedit msyh_font.reg</span><br></pre></td></tr></table></figure></p>
+<p>然后进入wine目录，编辑system.reg配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo gedit ~/.wine/system.reg</span><br></pre></td></tr></table></figure></p>
+<p>查找关键词FontSubstitutes，把它下面挨着的“MS Shell Dlg”=”SimSun”改为“MS Shell Dlg”=”msyh”</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_fix_font.png" alt="3" title="">
+                </div>
+                <div class="image-caption">3</div>
+            </figure>
+<p>改完记得保存~</p>
+<p>最后终端执行命令打开wine配置管理</p>
+<pre><code>&gt;&gt;&gt; winecfg
+</code></pre><p>选中默认设置，再把系统改成Windows 10或者Win 7~</p>
+<p>接着呐～最好是重启下系统或者注销一下，QQ搞定</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_qq_effect.png" alt="QQ" title="">
+                </div>
+                <div class="image-caption">QQ</div>
+            </figure>
+<p>参考：</p>
+<p><a href="https://phpcj.org/wineqq/" target="_blank" rel="noopener">WineQQ</a><br><br><br><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=290155" target="_blank" rel="noopener">彻底消除wine中文乱码</a></p>
+<p> —————–华丽的分割线—————-</p>
+<hr>
+
+<h2 id="安装微信"><a href="#安装微信" class="headerlink" title="安装微信"></a>安装微信</h2><p>微信没有出Linux的版本，但是可以通过以下方式解决：</p>
+<ul>
+<li>使用网页版，除了没有公众号之后，一切都没问题，包括传文件等。<br></li>
+</ul>
+<p>传送门: <a href="https://wx.qq.com/" target="_blank" rel="noopener">微信网页版</a><br></p>
+<ul>
+<li>使用第三方版本，只不过这个是桌面应用，原理是通过网页API集成的，稳定性还是可以的。<br></li>
+</ul>
+<p>Github项目地址：<a href="https://github.com/geeeeeeeeek/electronic-wechat" target="_blank" rel="noopener">electronic-wechat</a><br><br>下载地址：<a href="https://github.com/geeeeeeeeek/electronic-wechat/releases" target="_blank" rel="noopener">Download</a></p>
+<h3 id="以下是安装过程："><a href="#以下是安装过程：" class="headerlink" title="以下是安装过程："></a>以下是安装过程：</h3><pre><code>&gt;&gt;&gt; wget https://github.com/geeeeeeeeek/electronic-wechat/releases/download/V2.0/linux-x64.tar.gz  # 下载压缩包
+&gt;&gt;&gt; sudo tar zxvf linux-x64.tar.gz  # 解压
+&gt;&gt;&gt; sudo mv electronic-wechat-linux-x64/ /opt/electronic-wechat-linux-x64  # 把解压的文件夹放在/opt下
+&gt;&gt;&gt; sudo ln -s /opt/electronic-wechat-linux-x64/electronic-wechat /usr/bin/electronic-wechat  # 创建终端下的快速启动命令
+</code></pre><p>创建应用程序列表中的快速启动图标</p>
+<pre><code>&gt;&gt;&gt; cd ~/Desktop  # 进入桌面
+&gt;&gt;&gt; gedit WeChat.desktop
+</code></pre><p>将下面的内容复制进去</p>
+<pre><code>[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WeChat
+Icon=/opt/electronic-wechat-linux-x64/electronic-wechat.png
+Exec=/opt/electronic-wechat-linux-x64/electronic-wechat
+MimeType=application/x-py;
+Name[en_US]=WeChat
+</code></pre><p>喔～对了上面内容里面的<code>Icon</code>的图标是没有的，自己去网上随便找一个微信图片，然后复制到<code>/opt/electronic-wechat-linux-x64/</code>目录下，</p>
+<p>完成之后保存文件之后：</p>
+<ul>
+<li>首先右键单击刚才创建的<code>WeChat.desktop</code>的<code>Properties</code>选项<br></li>
+<li>进入<code>Properties</code>选项后，接着在<code>Permissions</code>里面勾选<code>Allow executing file as program</code><br></li>
+<li>最后双击打开刚才创建的<code>WeChat.desktop</code>就完成了~</li>
+</ul>
+<p>丢到应用程序列表：</p>
+<pre><code>&gt;&gt;&gt; sudo cp ~/Desktop/WeChat.desktop /usr/share/applications/WeChat.desktop
+</code></pre><p>接着应用列表里面就有了</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_and_wechat_effect.png" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure>
+<p>用起来和网页版的一样~</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.964Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2018/06/29/install-qq-and-wechat/" target="_blank" rel="external">https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/&title=《Ubuntu18.04 安装最新版QQ和微信》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/&title=《Ubuntu18.04 安装最新版QQ和微信》 — Ape Code&source=不久前我还在用Ubuntu17.10，如果不出意外的话，估计我会一直用到18.10的出现，对～如果不出意外的话……" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu18.04 安装最新版QQ和微信》 — Ape Code&url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/08/ubuntu-pycharm/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：在Ubuntu中安装Pycharm">下一篇：在Ubuntu中安装Pycharm</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/&title=《Ubuntu18.04 安装最新版QQ和微信》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/&title=《Ubuntu18.04 安装最新版QQ和微信》 — Ape Code&source=不久前我还在用Ubuntu17.10，如果不出意外的话，估计我会一直用到18.10的出现，对～如果不出意外的话……" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu18.04 安装最新版QQ和微信》 — Ape Code&url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2018/06/29/install-qq-and-wechat/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aSW7jQBAEQP3/05qrAUNSZpU8ANnBk6GF7NChXNvjEV/PH9fPV96/+/v1V3d+dZ8vXxgYGJdlPN9eyWfaQyd3zs+GgYFxDiMJhQl+Fkbff/f95zEwMDCSz+Qhe/MtDAwMjBmjvU+eJmJgYGDMitj3qV5SauYh+A9rcQwMjAsy8q77///7T+YbGBgYl2Js2v2b5v5sVPDyKRgYGLdmtAVqUmS2Sd6mYMbAwDiBkQfW/VJFS00adnX1jIGBcUFGW7jmjftZoz8fEhRNNwwMjIszvlV2Jvj9T/YyBGNgYBzAeF+ObkaP+wFnVCRjYGAcwMgfvxl2tqE2x2NgYJzAmKVrbVk7q62jE2JgYNyakT9gE3yHk9WyGYeBgXFXRpuE5Wlcu7SR980+bItgYGAcwEhI++O2YTfaGcHAwLgpo/1yu2yxaajVYwMMDIybMvLQOVuqyMPu7Ad6tP8BMDAwLsiYNdTyh82WOYZpIgYGxsGMfTDdHLQooTEwMA5g5IPMPHFsf45ZBoiBgXEyI0/p8pWvJHC3pS8GBsY5jORY7Zhz0+arx6IYGBg3ZTzLa8Zuk8I6VcXAwLg1YxbsZpPEPCgnR5+FbAwMjOsy2iC7aeu3A4OizYeBgXEAY7Mq0a5ibJbAPuS5GBgYGPEIc7+oUaxZYGBgYJSpYVsM5425D0/HwMA4gJEUsXn4m62XtQkoBgbGOYxZ6dgGzW8lhatBJgYGxvUY/wCd8GqYhivMwwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

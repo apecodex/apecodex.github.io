@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>用最简单的方法爬《煎蛋》 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="Python爬虫">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》 那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~                                                                                              0">
+<meta name="keywords" content="Python爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用最简单的方法爬《煎蛋》">
+<meta property="og:url" content="https://liuyangxiong.cn/2017/07/26/jiandan-reptile/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》 那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~                                                                                              0">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9150e4e5ly1fhvu8exi0lj204405k74m.jpg">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_6.png">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/9150e4e5ly1fhu47dm37zj203b02kmx7.jpg">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_1.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_2.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_7.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_3.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_8.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_4.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_5.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/jiandan_9.png">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用最简单的方法爬《煎蛋》">
+<meta name="twitter:description" content="说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》 那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~                                                                                              0">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/9150e4e5ly1fhvu8exi0lj204405k74m.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">用最简单的方法爬《煎蛋》</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-jiandan-reptile"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">用最简单的方法爬《煎蛋》</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2017-07-26 19:43:54" datetime="2017-07-26T11:43:54.000Z"  itemprop="datePublished">2017-07-26</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程/">编程</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">7</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><code>说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》</code></p>
+<p>那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/9150e4e5ly1fhvu8exi0lj204405k74m.jpg" alt="0" title="">
+                </div>
+                <div class="image-caption">0</div>
+            </figure></center>
+
+<a id="more"></a>
+<p>煎蛋网址: <code>http://jandan.net/</code></p>
+<p>用到模块:</p>
+<blockquote>
+<p>urllib</p>
+</blockquote>
+<blockquote>
+<p>BeautifulSoup</p>
+</blockquote>
+<blockquote>
+<p>lxml</p>
+</blockquote>
+<p>安装方式:</p>
+<p>因为urllib是自带的，就不用下载了·~</p>
+<blockquote>
+<p>pip install bs4</p>
+</blockquote>
+<blockquote>
+<p>pip install lxml</p>
+</blockquote>
+<p>ok,安装完成之后~就开始吧~</p>
+<p>咱们就搞下面这三个就行了~其他的没啥可看的~</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_6.png" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure></center>
+
+<p>首先来妹子图吧~</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws4.sinaimg.cn/large/9150e4e5ly1fhu47dm37zj203b02kmx7.jpg" alt="2" title="">
+                </div>
+                <div class="image-caption">2</div>
+            </figure></center>
+
+<p>看一下图片的地址在哪儿，指着图片右键~点检查,如下图</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></center><br>能看见有两个链接~第一个是原图的~第二个是处理过的~咱们肯定要原图的~<br><br>接着,找一下这个页面的所有图片<br><br><center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_2.png" alt="3" title="">
+                </div>
+                <div class="image-caption">3</div>
+            </figure></center>
+
+<p>发现他是用无序列表<code>ol</code>~~上代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&quot;&#125;</span><br><span class="line">ooxx_url = &quot;http://jandan.net/ooxx&quot;</span><br><span class="line">Requesturl = urllib.request.Request(ooxx_url,headers=headers)</span><br><span class="line">openurl = urllib.request.urlopen(Requesturl)</span><br><span class="line">Be = BeautifulSoup(openurl.read().decode(&apos;utf-8&apos;),&apos;lxml&apos;)</span><br><span class="line">ooxx_image_url = Be.find(&quot;ol&quot;,class_=&quot;commentlist&quot;).find_all(&apos;a&apos;,class_=&quot;view_img_link&quot;)</span><br><span class="line">for x in ooxx_image_url:</span><br><span class="line">    print(&quot;http:&quot;+x[&apos;href&apos;])</span><br></pre></td></tr></table></figure>
+<p>上面的代码就可以返回妹子图的地址啦~</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_7.png" alt="4" title="">
+                </div>
+                <div class="image-caption">4</div>
+            </figure></center>
+
+<p>虽然就可以直接这样下载下来的，但是呐~下载下来的图片得有名字呐~接着爬，把发布人的名字和图片的ID也搞下来~继续观察网页源代码~</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_3.png" alt="5" title="">
+                </div>
+                <div class="image-caption">5</div>
+            </figure></center>
+
+<p>如上图~发布人的名字和图片ID就在这里~也好搞~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&quot;&#125;</span><br><span class="line">ooxx_url = &quot;http://jandan.net/ooxx&quot;</span><br><span class="line">Requesturl = urllib.request.Request(ooxx_url,headers=headers)</span><br><span class="line">openurl = urllib.request.urlopen(Requesturl)</span><br><span class="line">Be = BeautifulSoup(openurl.read().decode(&apos;utf-8&apos;),&apos;lxml&apos;)</span><br><span class="line">issue_name = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;strong&quot;)</span><br><span class="line">content_id = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;span&quot;,class_=&quot;righttext&quot;)</span><br><span class="line">for x in zip(issue_name,content_id):</span><br><span class="line">    print(x[0].get_text(),x[1].get_text())</span><br></pre></td></tr></table></figure>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_8.png" alt="6" title="">
+                </div>
+                <div class="image-caption">6</div>
+            </figure></center>
+
+<p>行了~现在可以弄下来了~~<br>但是呐~还有一个问题~他的页码是从最大的数往下的~继续看网页源代码…</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_4.png" alt="7" title="">
+                </div>
+                <div class="image-caption">7</div>
+            </figure></center>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&quot;&#125;</span><br><span class="line">url = &quot;http://jandan.net/ooxx&quot;</span><br><span class="line">Requesturl = urllib.request.Request(url,headers=headers)</span><br><span class="line">reopen = urllib.request.urlopen(Requesturl)</span><br><span class="line">Be = BeautifulSoup(reopen.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">BeSoup = Be.find(&quot;span&quot;,class_=&quot;current-comment-page&quot;)</span><br><span class="line">for Bs in BeSoup:</span><br><span class="line">    print(str(Bs)[1:-1])</span><br></pre></td></tr></table></figure>
+<p>上面的代码就是可以返回页码~</p>
+<p>行啦~可以搞下来了~接下来搞<code>无聊图</code>….<br>但是~<code>妹子图</code>的源码和<code>无聊图</code>的是一样的~~~只需要改一下<code>url</code>就行了~这里就不重复搞了~直接上<code>段子</code></p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandanjiandan_5.png" alt="8" title="">
+                </div>
+                <div class="image-caption">8</div>
+            </figure></center>
+
+<p>发现<code>段子</code>也和<code>妹子图</code>的一样…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">duan_url = &quot;http://jandan.net/duan&quot;</span><br><span class="line">Requesturl = urllib.request.Request(duan_url,headers=headers)</span><br><span class="line">reopen = urllib.request.urlopen(Requesturl)</span><br><span class="line">Be = BeautifulSoup(reopen.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">BeSoup = duan_text = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;p&quot;)</span><br><span class="line">for Bs in BeSoup:</span><br><span class="line">    print(Bs.get_text())</span><br></pre></td></tr></table></figure>
+<p>ok了….是不是很简单~这样就出来啦~<br>整理一下~~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import shutil</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">class Ooxx():</span><br><span class="line"></span><br><span class="line">    def __init__(self,url):</span><br><span class="line">        self.headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&quot;&#125;</span><br><span class="line">        self.url = url</span><br><span class="line"></span><br><span class="line">    def check_folter(self):</span><br><span class="line">        if os.path.exists(self.url) == True:</span><br><span class="line">            shutil.rmtree(self.url)</span><br><span class="line">            os.mkdir(self.url)</span><br><span class="line">        else:</span><br><span class="line">            os.mkdir(self.url)</span><br><span class="line"></span><br><span class="line">    def get_page(self):</span><br><span class="line">        Requesturl = urllib.request.Request(&quot;http://jandan.net/&quot;+self.url,headers=self.headers)</span><br><span class="line">        reopen = urllib.request.urlopen(Requesturl)</span><br><span class="line">        Be = BeautifulSoup(reopen.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">        BeSoup = Be.find(&quot;span&quot;,class_=&quot;current-comment-page&quot;)</span><br><span class="line">        for Bs in BeSoup:</span><br><span class="line">            return str(Bs)[1:-1]</span><br><span class="line"></span><br><span class="line">    def dowload(self):</span><br><span class="line">        self.check_folter()</span><br><span class="line">        if select_user == &quot;1&quot; or select_user == &quot;2&quot;:</span><br><span class="line">            page = int(self.get_page())</span><br><span class="line">            while page:</span><br><span class="line">                print(&quot;````````````````````````````````````````````````````&quot;)</span><br><span class="line">                print(&quot;正在下载第 &#123;&#125; 页&quot;.format(page))</span><br><span class="line">                url = &quot;http://jandan.net/&#123;&#125;/page-&#123;&#125;#comments&quot;.format(self.url,page)</span><br><span class="line">                Requesturl = urllib.request.Request(url,headers=self.headers)</span><br><span class="line">                reopen = urllib.request.urlopen(Requesturl)</span><br><span class="line">                Be = BeautifulSoup(reopen.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">                ooxx_image_url = Be.find(&quot;ol&quot;,class_=&quot;commentlist&quot;).find_all(&apos;a&apos;,class_=&quot;view_img_link&quot;)</span><br><span class="line">                issue_name = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;strong&quot;)</span><br><span class="line">                content_id = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;span&quot;,class_=&quot;righttext&quot;)</span><br><span class="line">                for dowload in zip(ooxx_image_url,issue_name,content_id):</span><br><span class="line">                    print(&quot;作者:&#123;&#125; 图片ID:&#123;&#125; 地址:&#123;&#125;  OK!&quot;.format(dowload[1].get_text(),dowload[2].get_text(),&quot;http:&quot;+dowload[0][&apos;href&apos;]))</span><br><span class="line">                    urllib.request.urlretrieve(&quot;http:&quot;+dowload[0][&apos;href&apos;],&quot;&#123;&#125;/&#123;&#125;&quot;.format(self.url,dowload[1].get_text()+dowload[2].get_text()+dowload[0][&apos;href&apos;][-4:]))</span><br><span class="line">                print(&quot;第 &#123;&#125; 页下载完成!&quot;.format(page))</span><br><span class="line">                page-=1</span><br><span class="line">        elif select_user == &quot;3&quot;:</span><br><span class="line">            page = int(self.get_page())</span><br><span class="line">            while page:</span><br><span class="line">                print(&quot;````````````````````````````````````````````````````&quot;)</span><br><span class="line">                print(&quot;正在下载第 &#123;&#125; 页&quot;.format(page))</span><br><span class="line">                url = &quot;http://jandan.net/&#123;&#125;/page-&#123;&#125;#comments&quot;.format(self.url,page)</span><br><span class="line">                Requesturl = urllib.request.Request(url,headers=self.headers)</span><br><span class="line">                reopen = urllib.request.urlopen(Requesturl)</span><br><span class="line">                Be = BeautifulSoup(reopen.read().decode(&quot;utf-8&quot;),&apos;lxml&apos;)</span><br><span class="line">                duan_text = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;p&quot;)</span><br><span class="line">                issue_name = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;strong&quot;)</span><br><span class="line">                content_id = Be.find(&apos;ol&apos;,class_=&quot;commentlist&quot;).find_all(&quot;span&quot;,class_=&quot;righttext&quot;)</span><br><span class="line">                for dowload in zip(duan_text,issue_name,content_id):</span><br><span class="line">                    print(&quot;\n作者:&#123;&#125; ID:&#123;&#125; 内容:&#123;&#125;  OK!&quot;.format(dowload[1].get_text(),dowload[2].get_text(),dowload[0].get_text()))</span><br><span class="line">                    try:</span><br><span class="line">                        with open(&quot;&#123;&#125;/&#123;&#125;&quot;.format(self.url,dowload[1].get_text()+dowload[2].get_text()+&quot;.txt&quot;),&apos;w&apos;) as save:</span><br><span class="line">                            save.write(dowload[0].get_text())</span><br><span class="line">                    except UnicodeEncodeError:</span><br><span class="line">                        pass</span><br><span class="line">                print(&quot;第 &#123;&#125; 页下载完成!&quot;.format(page))</span><br><span class="line">                page-=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    select_user = input(&quot;&gt;&gt;&gt; &quot;)</span><br><span class="line">    if select_user == &quot;1&quot;:</span><br><span class="line">        x = Ooxx(&quot;ooxx&quot;)</span><br><span class="line">        x.dowload()</span><br><span class="line">    elif select_user == &quot;2&quot;:</span><br><span class="line">        x = Ooxx(&quot;pic&quot;)</span><br><span class="line">        x.dowload()</span><br><span class="line">    elif select_user == &quot;3&quot;:</span><br><span class="line">        x = Ooxx(&quot;duan&quot;)</span><br><span class="line">        x.dowload()</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;Srroy,not &#123;&#125;&quot;.format(select_user))</span><br></pre></td></tr></table></figure>
+<p>我在测试的时候，无聊写了一个GUI的爬虫~里面包括了<code>煎蛋</code>~<code>斗图啦</code>~<code>百思不得姐</code>的内容<br>写完之后自我感觉挺好哒~<a href="https://github.com/rookiesmile/python/blob/master/Python/reptile/gui_reptile.py" target="_blank" rel="noopener">源代码</a> 看看也行~~</p>
+<p><center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/jiandan_9.png" alt="9" title="">
+                </div>
+                <div class="image-caption">9</div>
+            </figure></center><br>但是在Linux只能打开，没法爬取呐…不知道啥问题~目前只能在Windows下运行~</p>
+<p>就这些~有问题请在下面的评论区反馈~~</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.964Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2017/07/26/jiandan-reptile/" target="_blank" rel="external">https://liuyangxiong.cn/2017/07/26/jiandan-reptile/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/&title=《用最简单的方法爬《煎蛋》》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/&title=《用最简单的方法爬《煎蛋》》 — Ape Code&source=说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》
+那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~
+
+..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《用最简单的方法爬《煎蛋》》 — Ape Code&url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/12/qq-strip-message/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：利用cookie爬取QQ空间留言板
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/24/aircrack-ng-wifi/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：啥？破解WIFI密码这么容易？">下一篇：啥？破解WIFI密码这么容易？</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/&title=《用最简单的方法爬《煎蛋》》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/&title=《用最简单的方法爬《煎蛋》》 — Ape Code&source=说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》
+那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~
+
+..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《用最简单的方法爬《煎蛋》》 — Ape Code&url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2017/07/26/jiandan-reptile/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aW44iMRAEQO5/afYCQ5NZblZqO/oLIcY4GKlUr9crft6Xz6dPXp9zff7rFw8GBsZjGckVk2slf3v9meT9j1QMDIwDGJ+umFwlv/p1tLx+/eXOGBgYGEEKWHxlfA4GBgZGy8iDZlKg3vzTYGBgHMBIUr31i14DZmkoBgbGCYy86/7/X/9kvoGBgfEoxrt88jHkXe9Ht8LAwNiace8YMk8TZyPSLykmBgbGpozk6HwBok3s8lD75QQMDIwDGG3R2A4M2kSwbcNhYGCcwEiGiG1qOOuS5Sf8kdtiYGBszWgHlvl6RL5aMSuMMTAwTmPMBpZ5cdu26oogjoGBsTUjL0qLUeJCaG4bcB/zXAwMjI0YRfM9CH/3JoV50omBgbE3o02/ot2NstGW/BBRKYuBgXEM466ViySgz8YSS9MGDAyMBzKSANc2wlaGkUtdQwwMjAMYK2sQdw0JZo08DAyMvRl5eTlL3fKUcdbUw8DAOJMxW4zIG/33Rsv6P4OBgfFYRpuE5eGyXadovwsDA+M0RtICW2nA5esUwyIWAwNja0bbsr/rKrPrDotYDAyMxzLe5bMe69qVizq3xcDA2I6xMhNsm/vr6xpLW28YGBgPZ+Rt/btSvXbkEKWJGBgYBzDyIratjGfBuk43MTAwMMqCdhg04+J2eBAGBsYxjN9VzLP2HAYGxjmMtohtB5k5uC2DMTAwTmDcGwpnZe3KqgcGBsbWjH8rlphOKHiZfAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

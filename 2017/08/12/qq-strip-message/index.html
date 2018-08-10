@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>利用cookie爬取QQ空间留言板 | Ape Code | I will tell you about it when I see you again.</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="Python爬虫">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》 拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿cookie来登陆，cookie这东西很重要，他包含用户的重要信息~">
+<meta name="keywords" content="Python爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用cookie爬取QQ空间留言板">
+<meta property="og:url" content="https://liuyangxiong.cn/2017/08/12/qq-strip-message/index.html">
+<meta property="og:site_name" content="Ape Code">
+<meta property="og:description" content="也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》 拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿cookie来登陆，cookie这东西很重要，他包含用户的重要信息~">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_srtip1.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip2.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip3.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip4.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip5.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip6.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip7.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip8.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip.png">
+<meta property="og:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_strip9.png">
+<meta property="og:updated_time" content="2018-08-10T14:09:29.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用cookie爬取QQ空间留言板">
+<meta name="twitter:description" content="也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》 拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿cookie来登陆，cookie这东西很重要，他包含用户的重要信息~">
+<meta name="twitter:image" content="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_srtip1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Ape Code" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">Coding.</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:1473018671@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/rookiesmile" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/u/5513088073" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">利用cookie爬取QQ空间留言板</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-qq-strip-message"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">利用cookie爬取QQ空间留言板</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2017-08-12 22:52:29" datetime="2017-08-12T14:52:29.000Z"  itemprop="datePublished">2017-08-12</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编程/">编程</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">6</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><code>也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》</code></p>
+<p>拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿<code>cookie</code>来登陆，<code>cookie</code>这东西很重要，他包含用户的重要信息~</p>
+<a id="more"></a>
+<p>因为要用cookie登陆，咱们就先去看看<code>cookie</code>~<br>打开QQ空间登陆页面，然后打开<code>开发者工具</code>~接着打开<code>Network</code>进行捕捉~<br>登陆上之后，一般捕捉到的第一个里面就包含着登陆的<code>cookie</code>如下图<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_srtip1.png" alt="0" title="">
+                </div>
+                <div class="image-caption">0</div>
+            </figure></p>
+<p>红框框里的就是我账号的登陆<code>cookie</code>咱们开头也说了,这东西很重要，你原封不动的拿过去，服务器也是承认你已经登陆了，对于登陆用户，能干的事情就多了…..</p>
+<p>接着，保持<code>开发者工具</code>不动，打开<code>留言板</code>找到以<code>get_msgb</code>开头的~如下图~</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip2.png" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure>
+<p>点开他，观察一下~<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip3.png" alt="2" title="">
+                </div>
+                <div class="image-caption">2</div>
+            </figure></p>
+<p>红框框里面的就是咱们要的东西~他在<code>data</code>下的<code>commentList</code>里面,接着点开<code>commentList</code></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip4.png" alt="3" title="">
+                </div>
+                <div class="image-caption">3</div>
+            </figure>
+<ul>
+<li><code>nickname</code> 就是给你留言的名字</li>
+<li><code>pubtime</code> 是留言时间</li>
+<li><code>uin</code> 是对方的QQ号</li>
+<li><code>htmlContent</code> 是留言的内容</li>
+<li><code>ubbContent</code> 也是留言的内容</li>
+</ul>
+<p><code>htmlContent</code>和<code>ubbContent</code>同样是留言内容，不过通过变量名就能猜出了~<code>htmlContent</code>应该是处理过的<code>ubbContent</code>是原始的，要选哪一个呐？</p>
+<p>咱们选<code>ubbContent</code>,为啥？仔细看看就知道了~~</p>
+<p>OK~来查看一下<code>Headers</code>里面的链接~<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip5.png" alt="4" title="">
+                </div>
+                <div class="image-caption">4</div>
+            </figure><br>复制这个链接用浏览器打开看一下~<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip6.png" alt="5" title="">
+                </div>
+                <div class="image-caption">5</div>
+            </figure><br>和咱们在<code>开发者工具</code>里面内容一样</p>
+<p>接下来就派出蜘蛛吧~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import numpy</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cookie = &quot;welcomeflash=1473018671_15; ...................................&quot;</span><br><span class="line">header = &#123;</span><br><span class="line">&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&apos;,</span><br><span class="line">&apos;Connection&apos;: &apos;keep-alive&apos;,</span><br><span class="line">&apos;accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</span><br><span class="line">&apos;Cookie&apos;: cookie&#125;</span><br><span class="line">proxies = &#123;&apos;http&apos;:&apos;http://27.185.194.55:8118&apos;&#125;</span><br><span class="line">url = &quot;https://h5.qzone.qq.com/proxy/domain/m.qzone.qq.com/cgi-bin/new/get_msgb?uin=1473018671&amp;hostUin=1473018671&amp;start=0&amp;s=0.6099869503510162&amp;format=jsonp&amp;num=10&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;g_tk=1911197127&amp;qzonetoken=40006667030cbf36e52d4a80e349d674e7024da4780b92a66c3f5f3b9e413903b691aac1b0d294bfbe&quot;</span><br><span class="line">res = requests.get(url,proxies=proxies,headers=header)</span><br><span class="line">print(res.text)</span><br></pre></td></tr></table></figure>
+<p>代码里面我的<code>cookie</code>我去掉了~<code>url</code>地址也是拿自己的～从<code>开发者工具</code>上复制就行了~</p>
+<p>运行一下:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip7.png" alt="6" title="">
+                </div>
+                <div class="image-caption">6</div>
+            </figure></p>
+<p>没问题~和刚才打开的内容一样~不过现在弄下来的是一个字符串~不能直接<code>json</code><br>先用切片把<code>_Callback()</code>去掉~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cookie = &quot;welcomeflash=1473018671_15; ............................&quot;</span><br><span class="line">header = &#123;</span><br><span class="line">&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&apos;,</span><br><span class="line">&apos;Connection&apos;: &apos;keep-alive&apos;,</span><br><span class="line">&apos;accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</span><br><span class="line">&apos;Cookie&apos;: cookie&#125;</span><br><span class="line">proxies = &#123;&apos;http&apos;:&apos;http://27.185.194.55:8118&apos;&#125;</span><br><span class="line">url = &quot;https://h5.qzone.qq.com/proxy/domain/m.qzone.qq.com/cgi-bin/new/get_msgb?uin=1473018671&amp;hostUin=1473018671&amp;start=0&amp;s=0.6099869503510162&amp;format=jsonp&amp;num=10&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;g_tk=1911197127&amp;qzonetoken=40006667030cbf36e52d4a80e349d674e7024da4780b92a66c3f5f3b9e413903b691aac1b0d294bfbe&quot;</span><br><span class="line">res = requests.get(url,proxies=proxies,headers=header)</span><br><span class="line">get_text = res.text[10:-3]</span><br><span class="line">js = json.loads(get_text)</span><br><span class="line">for i in range(len(js[&apos;data&apos;][&apos;commentList&apos;])):</span><br><span class="line">	print(js[&apos;data&apos;][&apos;commentList&apos;][i][&apos;nickname&apos;],&apos;\t&apos;,js[&apos;data&apos;][&apos;commentList&apos;][i][&apos;ubbContent&apos;])</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip8.png" alt="7" title="">
+                </div>
+                <div class="image-caption">7</div>
+            </figure>
+<p>成啦~这一页没问题~下一页咋办呐？~</p>
+<p>继续观察<code>开发者工具</code>点击下一页~</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_stripqq_strip.png" alt="8" title="">
+                </div>
+                <div class="image-caption">8</div>
+            </figure>
+<p>看一下这个链接和上一个的链接有啥变化~~</p>
+<p>在这个链接里面，咱们就只需要修改两个地方~一个是<code>start</code>另一个是<code>s</code>的参数</p>
+<p><code>start</code>是0、10、20、30、40、50、60……这样一直上去的,用个<code>while</code>循环进行了<br><code>s</code>是随机的时间,可以用<code>random.random</code>或者<code>numpy.random.random</code>实现,两个都一样,我就用第二个吧~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import numpy</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cookie = &quot;&quot;   # 输入自己的 cookie</span><br><span class="line">header = &#123;</span><br><span class="line">&apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&apos;,</span><br><span class="line">&apos;Connection&apos;: &apos;keep-alive&apos;,</span><br><span class="line">&apos;accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,</span><br><span class="line">&apos;Cookie&apos;: cookie&#125;</span><br><span class="line">proxies = &#123;&apos;http&apos;:&apos;http://27.185.194.55:8118&apos;&#125;</span><br><span class="line">times = 0</span><br><span class="line">uin = input(&quot;QQ帐号: &quot;)</span><br><span class="line">print(&quot;请注意更改url中qzonetoken和g_tk参数&quot;)</span><br><span class="line">if cookie == &quot;&quot;:</span><br><span class="line">	print(&quot;请输入cookie!&quot;)</span><br><span class="line">else:</span><br><span class="line">	while True:</span><br><span class="line">		print(&quot;第 &#123;&#125; 页&quot;.format(((times//10)+1)))</span><br><span class="line">		print(&quot;----------------------------------------&quot;)</span><br><span class="line">		url = &quot;https://h5.qzone.qq.com/proxy/domain/m.qzone.qq.com/cgi-bin/new/get_msgb?uin=&#123;&#125;&amp;hostUin=&#123;&#125;&amp;num=10&amp;start=&#123;&#125;&amp;hostword=0&amp;essence=1&amp;s=&#123;&#125;&amp;iNotice=0&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;format=jsonp&amp;ref=qzone&amp;g_tk=159637896&amp;qzonetoken=2a26403b960220332f267c6736eec1e4053e1f6eb5791eb2fe314429eb084741d2f4b70466ac0e7f1c&quot;.format(uin,uin,str(times),numpy.random.random())</span><br><span class="line">		# url地址要自己去开发者工具里面拿~上面的这个是我自己的~复制自己的修改一下就行了~</span><br><span class="line">		regs = requests.get(url, proxies=proxies, headers=header)</span><br><span class="line">		str_qiepian = regs.text[10:-3]</span><br><span class="line">		try:</span><br><span class="line">			js = json.loads(str_qiepian)[&apos;data&apos;][&apos;commentList&apos;]</span><br><span class="line">		except KeyError:</span><br><span class="line">			print(&quot;请更换cookie!&quot;)</span><br><span class="line">			break</span><br><span class="line">		except json.decoder.JSONDecodeError:</span><br><span class="line">			print(&quot;请更换url地址，地址中的qzonetoken验证和g_tk有变&quot;)</span><br><span class="line">			break</span><br><span class="line">		if js == []:</span><br><span class="line">			print(&quot;Over! 共计 &#123;&#125; 页&quot;.format(json.loads(str_qiepian)[&apos;data&apos;][&apos;total&apos;]))</span><br><span class="line">			break</span><br><span class="line">		else:</span><br><span class="line">			for page in range(len(js)):</span><br><span class="line">				print(&quot;第&#123;&#125;页的第&#123;&#125;条 留言者:&#123;&#125; \t 内容:&#123;&#125;&quot;.format((times//10)+1,page+1,js[page][&apos;nickname&apos;],js[page][&apos;ubbContent&apos;]))</span><br><span class="line">		times+=10</span><br><span class="line">		time.sleep(numpy.random.random())</span><br></pre></td></tr></table></figure>
+<p><code>注意啊！修改自己的cookie和url</code><br><code>url只需要更改qzonetoken和g_tk参数</code></p>
+<p>效果:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obf6hf3q0.bkt.clouddn.com/qq_strip9.png" alt="9" title="">
+                </div>
+                <div class="image-caption">9</div>
+            </figure></p>
+<p>就到这儿吧~有问题请在下面评论区留言~~各位大佬手下留情~<br>源代码:<a href="https://github.com/rookiesmile/python/blob/master/Python/reptile/qq_strip.py" target="_blank" rel="noopener">爬取QQ空间留言板</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-10T14:09:29.968Z" itemprop="dateUpdated">2018-08-10 22:09:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/2017/08/12/qq-strip-message/" target="_blank" rel="external">https://liuyangxiong.cn/2017/08/12/qq-strip-message/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://liuyangxiong.cn'">
+            <img src="/img/avatar.jpg" alt="Coding.">
+            <a>Coding.</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/&title=《利用cookie爬取QQ空间留言板》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/&title=《利用cookie爬取QQ空间留言板》 — Ape Code&source=也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》
+拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿cookie来登陆，c..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2017/08/12/qq-strip-message/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用cookie爬取QQ空间留言板》 — Ape Code&url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/21/wangyiyunyinyue/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/26/jiandan-reptile/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：用最简单的方法爬《煎蛋》">下一篇：用最简单的方法爬《煎蛋》</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'rookiesmile',
+            repo: 'rookiesmile.github.io',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2016
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://liuyangxiong.cn">liuyangxiong.cn</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/&title=《利用cookie爬取QQ空间留言板》 — Ape Code&pic=https://liuyangxiong.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/&title=《利用cookie爬取QQ空间留言板》 — Ape Code&source=也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》
+拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿cookie来登陆，c..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuyangxiong.cn/2017/08/12/qq-strip-message/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用cookie爬取QQ空间留言板》 — Ape Code&url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/&via=https://liuyangxiong.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuyangxiong.cn/2017/08/12/qq-strip-message/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQXKDMAwF0Nz/0nSbmab0fzksMM+rTkLAj4UqWXq94nW8rfdP8uvze57/amlhYGDclnGcruQByYP/uvP5t8neMDAwnsM439z5NetB869nFS8OAwMDowyC57DkegwMDIx1xjkpAbQ8DAwMjDaAJttaCeIX1uIYGBg3ZHyryLzi70v6GxgYGLdiHOXKg2PSDJjt4cM9MTAwtmasNCBnSeQVDVEMDIznMFbK1DbUtrwoWcTAwHgYox28mG16/cjvn4CLgYGxBaMdiUgYbSJYtyp/f4uBgfFIRhJS24O5/AAueYlRwMXAwNiCcR5A17fSJohJyvjKYzYGBsYWjC8PXcUHcOvF7YfUEAMDY1NGW5p+65hsVsRGhTEGBsZ2jNnW22ZA8qskmNblKwYGxnaMPOS1R3IrCWVU9GJgYDyeMTvQb5PIPOBGwxYYGBjbMVbSuOQOswZAEawxMDC2ZsxakrPmZTuCVr8aDAyMrRmz1C3pObRJZFtIY2BgPIeRtx5XEsF6ILUd0cDAwHgAo03s1re4kiZG/VgMDIxNGTPSFQ2Gul+JgYGxKeMoV37rleZBnqrW9TcGBsYNGbP+YN50zAvj5D9DcXaIgYGxHaMd0soxs0RwVvpiYGA8gVFUvcvRvS19o1EPDAwMjOURivzzIRUDAwMjOBRrC9S2GL4wNcTAwLgJY7atNlDmYxkX1uIYGBg3ZMxGHGaHaytNzS80MjEwMO7H+AG6ImqYVhF8rQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2016/10/10");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "Coding.");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
