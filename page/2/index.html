@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="apecode">
+    
+    <meta name="description" content="我遇见你是最美的意外。">
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    
+    
+    
+    
+    
+    
+    <title>Ape Code</title>
+    <link href=”https://liuyangxiong.cn“ rel=”prefetch” />
+    <link rel="icon" href="https://liuyangxiong.cn/home/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <script src="//cdn1.lncld.net/static/js/3.4.2/av-min.js"></script>
+    <script>
+      AV.init({
+        appId: 'xvpf2hHbtQkGFTpAiVVVzKRb-gzGzoHsz',
+        appKey: 'SThXCSQ1YgmdSFcR5sPFHhxO'
+      })
+    </script>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/00616m3ngy1fzfo6ur0bcj30kw0kwha0.jpg'
+        var previews = '00616m3ngy1fzfn5isaj2j31hc0u0446.jpg,00616m3ngy1fzfn5mbdmtj312w0ni7e9.jpg,00616m3ngy1fzfn5pwb0xj30xc0likan.jpg,00616m3ngy1fzfn5iyn2aj30sg0k5tbw.jpg,00616m3ngy1fzfn5j4usqj30sg0hkdkl.jpg,00616m3ngy1fzfn5jfpypj30sg0gvgq2.jpg,00616m3ngy1fzfn5ke9ibj30sg0j8n0z.jpg,00616m3ngy1fzfn5jty3tj30sf0ie76h.jpg,00616m3ngy1fzfn5k6o3jj30sg0hsq73.jpg,00616m3ngy1fzfn5k8alyj30sg0hsjuf.jpg,00616m3ngy1fzfn5kk3pij318g0rw78g.jpg,00616m3ngy1fzfn5lf5a6j313u0puqc8.jpg,00616m3ngy1fzfn5m77dlj30zk0m779h.jpg,00616m3ngy1fzfn5qz88rj31hc0u0h4f.jpg,00616m3ngy1fzfn5q4ajdj30pi0ic17v.jpg,00616m3ngy1fzfn5mvbhxj31hc0u0ala.jpg,00616m3ngy1fzfn5n6dilj30xc0nuqex.jpg,00616m3ngy1fzfn5n09hxj30rs0irdj2.jpg,00616m3ngy1fzfn5nf3jqj30sg0kpmzz.jpg,00616m3ngy1fzfn5nxm9rj30sg0h9whw.jpg,00616m3ngy1fzfn5nw0roj30zk0ja41n.jpg,00616m3ngy1fzfn5oo064j30zk0mcjy9.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="/js/fireworks/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks/fireworks.js"></script>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="https://liuyangxiong.cn" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a href="/page/3/" class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
+            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="/imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="https://liuyangxiong.cn">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">Ape Code</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/home">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/编程/">编程</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/other/">other</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/ubuntu/">ubuntu</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/categories">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/Python/">Python</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/Hexo/">Hexo</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/WIFI/">WIFI</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/message">
+                        <i class="fa fa-comments"></i>留言板
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<div class="alert well fade in" id="gal-issue" role="alert">
+    <!-- TODO 添加关闭公告框功能 -->
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <!-- 这里自行配置公告内容 -->
+    <style>
+	
+	font
+	{
+		text-shadow: 5px 5px 5px #660066;
+	}
+	p
+	{
+		color: #000033;
+	}
+
+    </style>
+    <script>
+	var r=parseInt((Math.random()*65));
+	arr=new Array();
+	arr[0]="我不会让你靠我太近来伤害我。";
+	arr[1]="愤怒拥有掏空你所有心思的力量。";
+	arr[2]="就好像看透了我的心思一般,你总是突然出现。";
+	arr[3]="春天就要来了,遇见你的春天,再也没有你的春天。";
+	arr[4]="特别的相遇就是邂逅。";
+	arr[5]="能量加毅力可以征服一切。";
+	arr[6]="有一种隐忍蕴藏着一种力量，有一种静默是惊天的告白。";
+	arr[7]="我以为我害怕的是告别的时刻，原来，我同样害怕重逢。";
+	arr[8]="每个人都只能陪你走一段路。";
+	arr[9]="我希望不论什么时候，你都不要后悔我们的相遇。";
+	arr[10]="静默是最有力的呐喊。";
+	arr[11]="I will always be there for you. ";
+	arr[12]="Keep me by your side. ";
+	arr[13]="I feel so close to you right now. ";
+	arr[14]="此刻，我感觉与你如此亲近。";
+	arr[15]="与你相遇 好幸运";
+	arr[16]="强者从不畏惧对手的强势。";
+	arr[17]="你也不必冷淡 我没想过要纠缠。";
+	arr[18]="既然她跟在我后面来了，她就是我的责任。";
+	arr[19]="我厌倦了盯着我不能拥有的东西。";
+	arr[20]="你总要离开，你总会回来。";
+	arr[21]="我强大得她没法永远留住我。";
+	arr[22]="一生会遇见很多心动却未能成果的人，因为心动不是答案，心定才是。";
+	arr[23]="并不是说只有传达心意，将一切挑明才是正确的。";
+	arr[24]="等待不如追逐。";
+	arr[25]="我走得很慢，但绝不回头。";
+	arr[26]="我的目光搜索着她，仿佛就能接近她。";
+	arr[27]="我的心寻觅着她，而她却不在我身旁。";
+	arr[28]="往事永远不提，一切烂在心底";
+	arr[29]="长大是人必经的溃烂。";
+	arr[30]="我并不能一直在你身边帮助你。";
+	arr[31]="最熟悉的人才最出乎意料";
+	arr[32]="只要你需要我，我永远在你能看到的地方。";
+	arr[33]="故事从头，我对你依然心动。";
+	arr[34]="我已经足够强大抵御孤独。";
+	arr[35]="对于爱你的人不用太主动。";
+	arr[36]="我喜欢你，仅仅如此，喜欢而已。 ";
+	arr[37]="失足可以很快弥补，失言却可能永远无法补救。";
+	arr[38]="无论你走到哪里，我都能在人群中找到你。";
+	arr[39]="恣意妄为是强者的权利。";
+	arr[40]="我们不常联系，但我们彼此惦记。";
+	arr[41]="这个世界上不是所有人都有人性。";
+	arr[42]="就命运而言，休论公道。";
+	arr[43]="也许我所失去的，正是我生命中绝不该放手的东西。";
+	arr[44]="我甚至一秒也没拥有过你，却好像失去了你一万次。";
+	arr[45]="纵使时光手下留情，我终究还是失去了你。";
+	arr[46]="我不知将去何方，但我已在路上。";
+	arr[47]="我还会活过来的，但是不会再记得你。";
+	arr[48]="记住，不要回头。";
+	arr[49]="我只不过是想要待在他身边而已.";
+	arr[50]="无法回头的，都是生命里的好时光。";
+	arr[51]="只要你还需要我，我永远都会陪在你的身边.";
+	arr[52]="我能遇见你已经是很不可思议了。";
+	arr[53]="不曾拥有，却从未忘记。";
+	arr[54]="No reason, just like you. ";
+	arr[55]="向来缘浅，奈何情深";
+	arr[56]="I will tell you about it when I see you again.";
+	arr[57]="视而不见也是一种勇气。";
+	arr[58]="I won't let you close enough to hurt me.";
+	arr[59]="Anger has a way of hollowing out your insides.";
+	arr[60]="A special meeting is met.";
+	arr[61]="Energy and persistence conquer all things. ";
+	arr[62]="Silence is the most powerful cry. ";
+	arr[63]="I hope no matter what time, you do not regret our meeting. ";
+	arr[64]="薇尔莉特·伊芙加登 Violet·Evergarden";
+	arr[65]="人最弱的地方，是舍不得。";
+	//document.write(arr[r]);
+	//document.write(<center><p><font size="4" face="verdana" color="#000">arr[r]</font></p></center>)
+    </script>
+    <center><p><font size="4.5" face="verdana"><script>document.write(arr[r]);</script></font></p></center>
+    <!-- 自行配置公告内容结束 -->
+</div>
+
+
+<div id="article-list">
+     
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">10月</span>
+        <span class="day">18</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/10/18/weibo-login/">
+                    <span>Python3 模拟登录新浪微博</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python爬虫/">Python爬虫</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/10/18/weibo-login/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/10/18/weibo-login/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5pwb0xj30xc0likan.jpg" alt="Python3 模拟登录新浪微博">
+                    </div>
+                    <div class="info">
+                        <p><code>在无声的世界里，默默地等待着他的出现 ----《声之形》</code></p>
+<p>大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心的～最近也挺忙的……开学了不说～我还报了驾校，也快考科目一了，练习倒库练了一个礼拜，前一个小时倒进去没啥问题的，过了几个小时后又进不去了…….唉。行～废话也不多说，这次我介绍一下如何用Python来登录新浪微博~</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/10/18/weibo-login/">
+                        <span>Python3 模拟登录新浪微博</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-10-18
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python爬虫/">Python爬虫</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/10/18/weibo-login/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5jfpypj30sg0gvgq2.jpg" alt="Python3 模拟登录新浪微博">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>在无声的世界里，默默地等待着他的出现 ----《声之形》</code></p>
+<p>大概有两个月左右没更新过文章了，没想到还会有人来参观这个博客～访问人数在逐渐增加，这一点我挺开心的～最近也挺忙的……开学了不说～我还报了驾校，也快考科目一了，练习倒库练了一个礼拜，前一个小时倒进去没啥问题的，过了几个小时后又进不去了…….唉。行～废话也不多说，这次我介绍一下如何用Python来登录新浪微博~</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/10/18/weibo-login/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">08月</span>
+        <span class="day">21</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/08/21/wangyiyunyinyue/">
+                    <span>爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python爬虫/">Python爬虫</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/08/21/wangyiyunyinyue/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/08/21/wangyiyunyinyue/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5qz88rj31hc0u0h4f.jpg" alt="爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库">
+                    </div>
+                    <div class="info">
+                        <p><code>无论在哪里遇到你，我都会喜欢上你. ---《angel beats》</code></p>
+<p>难度不大~就介绍几个网易云音乐的API吧~</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/08/21/wangyiyunyinyue/">
+                        <span>爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-08-21
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python爬虫/">Python爬虫</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/08/21/wangyiyunyinyue/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5n09hxj30rs0irdj2.jpg" alt="爬取网易云音乐歌单里的所有歌曲歌词及评论并保存到数据库">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>无论在哪里遇到你，我都会喜欢上你. ---《angel beats》</code></p>
+<p>难度不大~就介绍几个网易云音乐的API吧~</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/08/21/wangyiyunyinyue/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">08月</span>
+        <span class="day">12</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/08/12/qq-strip-message/">
+                    <span>利用cookie爬取QQ空间留言板</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python爬虫/">Python爬虫</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/08/12/qq-strip-message/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/08/12/qq-strip-message/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5nf3jqj30sg0kpmzz.jpg" alt="利用cookie爬取QQ空间留言板">
+                    </div>
+                    <div class="info">
+                        <p><code>也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》</code></p>
+<p>拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿<code>cookie</code>来登陆，<code>cookie</code>这东西很重要，他包含用户的重要信息~</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/08/12/qq-strip-message/">
+                        <span>利用cookie爬取QQ空间留言板</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-08-12
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python爬虫/">Python爬虫</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/08/12/qq-strip-message/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5isaj2j31hc0u0446.jpg" alt="利用cookie爬取QQ空间留言板">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>也许我所失去的，正是我生命中绝不该放手的东西。---《云之彼端，约定的地方》</code></p>
+<p>拿代码直接登陆QQ空间有点复杂~说实话我不会~所以就拿<code>cookie</code>来登陆，<code>cookie</code>这东西很重要，他包含用户的重要信息~</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/08/12/qq-strip-message/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">07月</span>
+        <span class="day">26</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/07/26/jiandan-reptile/">
+                    <span>用最简单的方法爬《煎蛋》</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python爬虫/">Python爬虫</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/07/26/jiandan-reptile/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/07/26/jiandan-reptile/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5n6dilj30xc0nuqex.jpg" alt="用最简单的方法爬《煎蛋》">
+                    </div>
+                    <div class="info">
+                        <p><code>说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》</code></p>
+<p>那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~</p>
+<center><img src="http://ww1.sinaimg.cn/large/9150e4e5ly1fhvu8exi0lj204405k74m.jpg" alt="0"></center>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/07/26/jiandan-reptile/">
+                        <span>用最简单的方法爬《煎蛋》</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-07-26
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python爬虫/">Python爬虫</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/07/26/jiandan-reptile/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5n6dilj30xc0nuqex.jpg" alt="用最简单的方法爬《煎蛋》">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>说残酷的谎言会受到惩罚的。------《Re：从零开始的异世界生活》</code></p>
+<p>那啥~开头本来想说点气势较大的话的~可实在想不出来该说点啥~算了~直接发教程吧~</p>
+<center><img src="http://ww1.sinaimg.cn/large/9150e4e5ly1fhvu8exi0lj204405k74m.jpg" alt="0"></center>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/07/26/jiandan-reptile/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">06月</span>
+        <span class="day">24</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/06/24/aircrack-ng-wifi/">
+                    <span>啥？破解WIFI密码这么容易？</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/WIFI/">WIFI</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/06/24/aircrack-ng-wifi/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/06/24/aircrack-ng-wifi/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5mvbhxj31hc0u0ala.jpg" alt="啥？破解WIFI密码这么容易？">
+                    </div>
+                    <div class="info">
+                        <p><code>吾于冥河沉浮,受尽命运捉弄，纵然汝将忘吾，吾亦伴汝身旁。  ---《Re：从零开始的异世界生活》</code></p>
+<p>黑客是很多人崇拜的，黑客技术也是很多人想学的，想入侵一下网站啊～往仇人家的电脑丢病毒等等的啊～但成功的人也并不多，因为需要的知识甚多。<br>今天我头一次接触这个领域，从来没有玩过，成功的那一秒我是多兴奋哒～像中了大奖似的，这次就给大佬们送上<code>aircrack-ng</code>工具的使用方法～</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/06/24/aircrack-ng-wifi/">
+                        <span>啥？破解WIFI密码这么容易？</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-06-24
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/WIFI/">WIFI</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/06/24/aircrack-ng-wifi/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5k8alyj30sg0hsjuf.jpg" alt="啥？破解WIFI密码这么容易？">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>吾于冥河沉浮,受尽命运捉弄，纵然汝将忘吾，吾亦伴汝身旁。  ---《Re：从零开始的异世界生活》</code></p>
+<p>黑客是很多人崇拜的，黑客技术也是很多人想学的，想入侵一下网站啊～往仇人家的电脑丢病毒等等的啊～但成功的人也并不多，因为需要的知识甚多。<br>今天我头一次接触这个领域，从来没有玩过，成功的那一秒我是多兴奋哒～像中了大奖似的，这次就给大佬们送上<code>aircrack-ng</code>工具的使用方法～</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/06/24/aircrack-ng-wifi/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">05月</span>
+        <span class="day">28</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/05/28/signature/">
+                    <span>python3 打造GUI个性签名生成器</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/PythonGUI/">PythonGUI</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/05/28/signature/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/05/28/signature/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5lf5a6j313u0puqc8.jpg" alt="python3 打造GUI个性签名生成器">
+                    </div>
+                    <div class="info">
+                        <p><code>我能想起来的一直都是你的背影 ————四月是您的谎言</code></p>
+<p>好久没发点啥了～最近在忙着学习前端呢~这次就发点好玩哒~用python3打造GUI个性签名的生成器~</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/05/28/signature/">
+                        <span>python3 打造GUI个性签名生成器</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-05-28
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/PythonGUI/">PythonGUI</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/05/28/signature/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5nf3jqj30sg0kpmzz.jpg" alt="python3 打造GUI个性签名生成器">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>我能想起来的一直都是你的背影 ————四月是您的谎言</code></p>
+<p>好久没发点啥了～最近在忙着学习前端呢~这次就发点好玩哒~用python3打造GUI个性签名的生成器~</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/05/28/signature/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">03月</span>
+        <span class="day">04</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2017/03/04/Guess-number2-0/">
+                    <span>猜数字游戏2.0 升级版(数据保存)</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python/">Python</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2017/03/04/Guess-number2-0/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2017/03/04/Guess-number2-0/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5k6o3jj30sg0hsq73.jpg" alt="猜数字游戏2.0 升级版(数据保存)">
+                    </div>
+                    <div class="info">
+                        <p><code>猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。  ————大老师</code><br>引用了大老师的话，嘿嘿～我最喜爱的动漫角色就是”大老师”，我也是动漫迷嘛～小萝莉太棒了！——咳咳～这篇本来打算过年的时候就发的(没网)，加上这几天没时间，所以给忘了，这个程序是我在过年的时候无聊写的，因为实在是闲得扣脚…除了吃就是睡，主要还没网(农村嘛～)，补上补上～～～</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2017/03/04/Guess-number2-0/">
+                        <span>猜数字游戏2.0 升级版(数据保存)</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2017-03-04
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python/">Python</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2017/03/04/Guess-number2-0/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5nw0roj30zk0ja41n.jpg" alt="猜数字游戏2.0 升级版(数据保存)">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p><code>猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。  ————大老师</code><br>引用了大老师的话，嘿嘿～我最喜爱的动漫角色就是”大老师”，我也是动漫迷嘛～小萝莉太棒了！——咳咳～这篇本来打算过年的时候就发的(没网)，加上这几天没时间，所以给忘了，这个程序是我在过年的时候无聊写的，因为实在是闲得扣脚…除了吃就是睡，主要还没网(农村嘛～)，补上补上～～～</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2017/03/04/Guess-number2-0/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">12月</span>
+        <span class="day">21</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2016/12/21/baisibudejie/">
+                    <span>python3 爬取 ”百思不得姐“ 所有视频和图片</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python爬虫/">Python爬虫</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2016/12/21/baisibudejie/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2016/12/21/baisibudejie/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5nf3jqj30sg0kpmzz.jpg" alt="python3 爬取 ”百思不得姐“ 所有视频和图片">
+                    </div>
+                    <div class="info">
+                        <p>这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的….</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2016/12/21/baisibudejie/">
+                        <span>python3 爬取 ”百思不得姐“ 所有视频和图片</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2016-12-21
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python爬虫/">Python爬虫</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2016/12/21/baisibudejie/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5nw0roj30zk0ja41n.jpg" alt="python3 爬取 ”百思不得姐“ 所有视频和图片">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p>这个算是我的第一次爬虫经验，虽然很容易就实现了，代码量相当的少，也挺满足了，自己也是从菜鸟慢慢的爬起来的,虽然现在也挺菜的….</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2016/12/21/baisibudejie/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">12月</span>
+        <span class="day">15</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2016/12/15/Guess-number/">
+                    <span>Python3 猜数字游戏</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python/">Python</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2016/12/15/Guess-number/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2016/12/15/Guess-number/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5nw0roj30zk0ja41n.jpg" alt="Python3 猜数字游戏">
+                    </div>
+                    <div class="info">
+                        <p>猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便丢去。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2016/12/15/Guess-number/">
+                        <span>Python3 猜数字游戏</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2016-12-15
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python/">Python</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2016/12/15/Guess-number/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5k6o3jj30sg0hsq73.jpg" alt="Python3 猜数字游戏">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p>猜数字游戏，题目要求是：随机生成一个数字，用户输入一个数字，判断用户猜对了没有，没有就继续猜，直到猜对为止，并且把用户所猜的所有的数字打印出来，有重复的便丢去。</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2016/12/15/Guess-number/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+     <div class="article well clearfix article-body article-excerpt" data-aos="flip-up">
+    
+    <div class="data-article hidden-xs">
+        <span class="month">12月</span>
+        <span class="day">14</span>
+    </div>
+    <!-- 大型设备文章 -->
+    <section class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2016/12/14/196-priblem/">
+                    <span>Python3 实现196问题</span>
+                </a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Python/">Python</a>
+                
+            </span>
+            
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
+            <!-- TODO 添加评论统计 -->
+            <!--<span class="label label-gal">
+                <i class="fa fa-comments"></i>
+                <a href="/2016/12/14/196-priblem/#comments">739</a>
+            </span>-->
+        </div>
+        <div class="alert alert-gal article-body content-article">
+            <div class="item">
+                <a href="/2016/12/14/196-priblem/">
+                    <div class="img">
+                        
+                        <img src="/imgs/preview/00616m3ngy1fzfn5k6o3jj30sg0hsq73.jpg" alt="Python3 实现196问题">
+                    </div>
+                    <div class="info">
+                        <p>196问题其实就是得到一个数的回数，和6174问题差不多，只是算法不一样，6174是排序最大减去最小的，而196是把数倒过来加，比如：数字67,就是67+76=143，143+341=484 这个484就是67的回数</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="visible-xs">
+        <div class="title-article">
+            <center>
+                <h4>
+                    <a href="/2016/12/14/196-priblem/">
+                        <span>Python3 实现196问题</span>
+                    </a>
+                </h4>
+            </center>
+        </div>
+        <p></p>
+        <center>
+            <i class="fa fa-calendar"></i> 2016-12-14
+        </center>
+        <p></p>
+        <p></p>
+        <center>
+            
+            <i class="fa fa-tags"></i>
+            
+            <a href="/tags/Python/">Python</a>
+            
+            
+            
+            <i class="fa fa-eye"></i>
+            
+        </center>
+        <p></p>
+        <div class="alert alert-gal article-body content-article">
+            <p style="text-align: center;">
+                <a href="/2016/12/14/196-priblem/">
+                    
+                    <img src="/imgs/preview/00616m3ngy1fzfn5mbdmtj312w0ni7e9.jpg" alt="Python3 实现196问题">
+                </a>
+            </p>
+        </div>
+        
+        <div class="alert alert-gal">
+            <p>196问题其实就是得到一个数的回数，和6174问题差不多，只是算法不一样，6174是排序最大减去最小的，而196是把数倒过来加，比如：数字67,就是67+76=143，143+341=484 这个484就是67的回数</p>
+        </div>
+        
+        <a class="btn btn-danger pull-right read-more btn-block" href="/2016/12/14/196-priblem/">
+            阅读全文
+            <!--<span class="badge">739</span>-->
+        </a>
+    </section>
+</div>
+     
+</div>
+<!-- 前方最多7个 < 1 2 3 4 5 6 -->
+<!-- 前方超过第7页则分为 < 1 ... (n - 3) (n - 2) (n - 1) n, 此时前面为固定的6个 -->
+
+<!-- 后方最多8个 (n + 1) 到 (n + 7) > -->
+<!-- 如果末页和当前页相差超过7, 此时后面为固定的6个, (n + 1) (n + 2) (n + 3) ... total > -->
+
+
+
+<div id="gal-pagination" class="clearfix">
+    <ul class="pagination pagination-gal pull-right">
+        
+        <li class="prev">
+            <a href="/">«</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="/">1</a>
+        </li>
+        
+        
+        <li class="current">
+            <span>2</span>
+        </li>
+        
+        
+        <li>
+            <a href="/page/3">3</a>
+        </li>
+        
+        
+        
+        <li class="next">
+            <a href="/page/3/">»</a>
+        </li>
+        
+    </ul>
+</div>
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~" autocomplete="off">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            apecode
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/00616m3ngy1fzfo6ur0bcj30kw0kwha0.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"><p>我遇见你是最美的意外。</p>
+</p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    <aside id="sidebar-hot_posts">
+    <div class="panel panel-gal hot hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-fire"></i>
+            最热文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2019/01/24/graph-bed-lesson/">记一次使用图床的教训</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/25/ubuntu-beautify-mac/">Ubuntu18.04模仿MAC主题</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/29/install-qq-and-wechat/">Ubuntu18.04 安装最新版QQ和微信</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/04/08/ubuntu-pycharm/">在Ubuntu中安装Pycharm</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/09/huaban-spider/">花瓣网爬虫之爬取图片</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/01/huaban-login/">花瓣网爬虫之模拟登录</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/01/27/shadow-ss/">如何科学上网</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/01/25/xiaohua/">Python3 爬取校花网</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/01/16/wechat-jump/">Python微信跳一跳半自动辅助</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/25/win-ubuntu-huaping/">Win7+Ubuntu进入Win7时花屏解决方法</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2016/12/14/196-priblem/">Python3 实现196问题</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2016/12/13/6174-priblem/">Python3 实现数学黑洞6174</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2016/12/13/Linux-ls/">Python3 实现Linux中的`ls -l`</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2016/10/18/Linux本地部署报错ERR!/">Linux中部署hexo报错一大堆&#39;ERR！&#39;肿么办？？</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/06/24/aircrack-ng-wifi/">啥？破解WIFI密码这么容易？</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2019/01/24/graph-bed-lesson/">记一次使用图床的教训</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/03/09/huaban-spider/">花瓣网爬虫之爬取图片</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/04/08/ubuntu-pycharm/">在Ubuntu中安装Pycharm</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/01/16/wechat-jump/">Python微信跳一跳半自动辅助</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/10/18/weibo-login/">Python3 模拟登录新浪微博</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                
+                <li>
+                    <a href="/page/2/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                
+                
+                <li>
+                    <a href="/page/2/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                
+                
+                <li>
+                    <a href="/page/2/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+                
+            </ul>
+            <div class="tab-content">
+                
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/Python/" style="font-size: 11.45450495445493px;" class="tag-cloud-link">Python</a>
+    
+    <a href="/tags/Hexo/" style="font-size: 8.417951264190219px;" class="tag-cloud-link">Hexo</a>
+    
+    <a href="/tags/WIFI/" style="font-size: 10.735838131173452px;" class="tag-cloud-link">WIFI</a>
+    
+    <a href="/tags/Python爬虫/" style="font-size: 13.467625514774607px;" class="tag-cloud-link">Python爬虫</a>
+    
+    <a href="/tags/图床/" style="font-size: 11.181144380048327px;" class="tag-cloud-link">图床</a>
+    
+    <a href="/tags/ubuntu/" style="font-size: 13.947090902909693px;" class="tag-cloud-link">ubuntu</a>
+    
+    <a href="/tags/科学上网/" style="font-size: 13.475431222263524px;" class="tag-cloud-link">科学上网</a>
+    
+    <a href="/tags/PythonGUI/" style="font-size: 15.157193114493484px;" class="tag-cloud-link">PythonGUI</a>
+    
+    <a href="/tags/双系统花屏/" style="font-size: 9.757763875114971px;" class="tag-cloud-link">双系统花屏</a>
+    
+</div>
+                
+                
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="https://aoenian.github.io/" target="_blank">aoenian&#39;s Blog</a>
+    </li>
+    
+    <li>
+        <a href="https://hellolaowang.github.io/" target="_blank">Rising Star&#39;s Blog</a>
+    </li>
+    
+</div>
+                
+                
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/rookiesmile" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/crazy-rookie" target="_blank">知乎</a>
+    </li>
+    
+    <li>
+        <a href="http://mail.google.com/mail/u/O/?tab=wm#inbox" target="_blank">Mail</a>
+    </li>
+    
+    <li>
+        <a href="http://weibo.com/5513088073" target="_blank">weibo</a>
+    </li>
+    
+    <li>
+        <a href="http://plus.google.com/u/O/111253443971342647376" target="_blank">Google</a>
+    </li>
+    
+    <li>
+        <a href="https://twitter.com/Crazy_Rookie" target="_blank">Twitter</a>
+    </li>
+    
+    <li>
+        <a href="https://www.facebook.com/la.leu.14" target="_blank">Facebook</a>
+    </li>
+    
+</div>
+                
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 apecode Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+</body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '34'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+<script src="/js/oni.js"></script>
+
+
+<script>
+    window.hot_posts_count = '10'
+    // window.use_leancloud = 'true'
+</script>
+<script src="/js/comment/leancloud.js"></script>
+
+
+<script src="https://myau.moe/js/comment/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = ''
+      window.commentConfig.owner = 'rookiesmile'
+      window.commentConfig.repo = 'rookiesmile.github.io'
+      window.commentConfig.client_id = '268b94d85289ba2e2935'
+      window.commentConfig.client_secret = 'd5bee5c7f2b00cdef4fa4e434d5282dbb6b8cdd0'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+      	id: '',
+        owner: 'rookiesmile',
+        repo: 'rookiesmile.github.io',
+        client_id: '268b94d85289ba2e2935',
+        client_secret: 'd5bee5c7f2b00cdef4fa4e434d5282dbb6b8cdd0',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
+
+
+</html>
